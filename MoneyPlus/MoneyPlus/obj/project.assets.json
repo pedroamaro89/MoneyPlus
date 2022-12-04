@@ -10917,11 +10917,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus.csproj",
+      "projectUniqueName": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus\\MoneyPlus.csproj",
       "projectName": "MoneyPlus",
-      "projectPath": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus.csproj",
+      "projectPath": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus\\MoneyPlus.csproj",
       "packagesPath": "C:\\Users\\Pedro Amaro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\obj\\",
+      "outputPath": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

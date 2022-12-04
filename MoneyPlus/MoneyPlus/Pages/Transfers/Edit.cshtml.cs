@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
 using MoneyPlus.Services.Models;
 
-namespace MoneyPlus.Pages.Wallets
+namespace MoneyPlus.Pages.Transfers
 {
     public class EditModel : PageModel
     {
@@ -21,23 +21,23 @@ namespace MoneyPlus.Pages.Wallets
         }
 
         [BindProperty]
-        public Wallet Wallet { get; set; } = default!;
+        public Transfer Transfer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Wallet == null)
+            if (id == null || _context.Transfer == null)
             {
                 return NotFound();
             }
 
-            var wallet =  await _context.Wallet.FirstOrDefaultAsync(m => m.ID == id);
-            if (wallet == null)
+            var transfer =  await _context.Transfer.FirstOrDefaultAsync(m => m.ID == id);
+            if (transfer == null)
             {
                 return NotFound();
             }
-            Wallet = wallet;
-           ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "ID", "ID");
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            Transfer = transfer;
+           ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
+           ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
         }
 
@@ -45,12 +45,12 @@ namespace MoneyPlus.Pages.Wallets
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            /*if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
-            }*/
+            }
 
-            _context.Attach(Wallet).State = EntityState.Modified;
+            _context.Attach(Transfer).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace MoneyPlus.Pages.Wallets
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!WalletExists(Wallet.ID))
+                if (!TransferExists(Transfer.ID))
                 {
                     return NotFound();
                 }
@@ -71,9 +71,9 @@ namespace MoneyPlus.Pages.Wallets
             return RedirectToPage("./Index");
         }
 
-        private bool WalletExists(int id)
+        private bool TransferExists(int id)
         {
-          return (_context.Wallet?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.Transfer?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

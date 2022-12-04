@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyPlus.Data;
 
@@ -11,9 +12,11 @@ using MoneyPlus.Data;
 namespace MoneyPlus.Migrations
 {
     [DbContext(typeof(MoneyPlusContext))]
-    partial class MoneyPlusContextModelSnapshot : ModelSnapshot
+    [Migration("20221204131305_addTableTransfers")]
+    partial class addTableTransfers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

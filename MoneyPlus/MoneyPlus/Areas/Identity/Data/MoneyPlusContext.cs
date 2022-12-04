@@ -31,7 +31,7 @@ public class MoneyPlusContext : IdentityDbContext<MoneyPlusUser>
 
     public DbSet<MoneyPlus.Services.Models.Transaction> Transaction { get; set; } = default!;
 
-   
+    public DbSet<MoneyPlus.Services.Models.Transfer> Transfer { get; set; } = default!;
 
 
 }

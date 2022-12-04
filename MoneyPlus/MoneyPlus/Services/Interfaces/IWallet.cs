@@ -12,7 +12,7 @@ namespace MoneyPlus.Services.Interfaces
         public string Name { get; set; }
         public Category Category { get; set; }
         public int CategoryID { get; set; }
-        public double Amount { get; set; }
+        public double Balance { get; set; }
 
 
 

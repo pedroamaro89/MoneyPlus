@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyPlus.Data;
 
@@ -11,9 +12,11 @@ using MoneyPlus.Data;
 namespace MoneyPlus.Migrations
 {
     [DbContext(typeof(MoneyPlusContext))]
-    partial class MoneyPlusContextModelSnapshot : ModelSnapshot
+    [Migration("20221204110250_alterNameColumnWallet")]
+    partial class alterNameColumnWallet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -297,39 +300,6 @@ namespace MoneyPlus.Migrations
                     b.ToTable("Transaction");
                 });
 
-            modelBuilder.Entity("MoneyPlus.Services.Models.Transfer", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DestinationWalletID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OriginWalletID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("DestinationWalletID");
-
-                    b.HasIndex("OriginWalletID");
-
-                    b.ToTable("Transfer");
-                });
-
             modelBuilder.Entity("MoneyPlus.Services.Models.Wallet", b =>
                 {
                     b.Property<int>("ID")
@@ -429,25 +399,6 @@ namespace MoneyPlus.Migrations
                     b.Navigation("Payee");
 
                     b.Navigation("Wallet");
-                });
-
-            modelBuilder.Entity("MoneyPlus.Services.Models.Transfer", b =>
-                {
-                    b.HasOne("MoneyPlus.Services.Models.Wallet", "DestinationWallet")
-                        .WithMany()
-                        .HasForeignKey("DestinationWalletID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MoneyPlus.Services.Models.Wallet", "OriginWallet")
-                        .WithMany()
-                        .HasForeignKey("OriginWalletID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DestinationWallet");
-
-                    b.Navigation("OriginWallet");
                 });
 
             modelBuilder.Entity("MoneyPlus.Services.Models.Wallet", b =>

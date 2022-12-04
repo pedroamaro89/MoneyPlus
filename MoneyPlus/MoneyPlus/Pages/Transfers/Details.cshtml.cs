@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
 using MoneyPlus.Services.Models;
 
-namespace MoneyPlus.Pages.Wallets
+namespace MoneyPlus.Pages.Transfers
 {
     public class DetailsModel : PageModel
     {
@@ -19,31 +19,24 @@ namespace MoneyPlus.Pages.Wallets
             _context = context;
         }
 
-      public Wallet Wallet { get; set; } = default!;
-        public IList<Transaction> Transaction { get; set; }
+      public Transfer Transfer { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Wallet == null)
+            if (id == null || _context.Transfer == null)
             {
                 return NotFound();
             }
 
-            var wallet = await _context.Wallet.FirstOrDefaultAsync(m => m.ID == id);
-            if (wallet == null)
+            var transfer = await _context.Transfer.FirstOrDefaultAsync(m => m.ID == id);
+            if (transfer == null)
             {
                 return NotFound();
             }
             else 
             {
-                Wallet = wallet;
+                Transfer = transfer;
             }
-
-            if (_context.Transaction != null)
-            {
-                Transaction = await _context.Transaction.Where(r => r.WalletId == Wallet.ID).ToListAsync();
-            }
-
             return Page();
         }
     }

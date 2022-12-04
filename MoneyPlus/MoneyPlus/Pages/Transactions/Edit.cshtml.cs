@@ -30,50 +30,65 @@ namespace MoneyPlus.Pages.Transactions
                 return NotFound();
             }
 
-            var transaction =  await _context.Transaction.FirstOrDefaultAsync(m => m.ID == id);
+            var transaction = await _context.Transaction.FirstOrDefaultAsync(m => m.ID == id);
             if (transaction == null)
             {
                 return NotFound();
             }
             Transaction = transaction;
-           ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
-           ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "ID");
+            ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
+            ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+
+
+
+        public Wallet Wallet { get; set; }
+        public string Type { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return Page();
             }
+    var typeId = int.Parse(Request.Query["type"]);
+            var walletID = int.Parse(Request.Query["id"]);
+            Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();*/
 
-            _context.Attach(Transaction).State = EntityState.Modified;
+            //_context.Attach(Transaction).State = EntityState.Modified;
 
-            try
+            var walletID = int.Parse(Request.Query["id"]);
+            Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
+
+
+            if (Transaction.Type == 0)
             {
-                await _context.SaveChangesAsync();
+                Wallet.Balance = Wallet.Balance + Transaction.Amount;
+
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!TransactionExists(Transaction.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                Wallet.Balance = Wallet.Balance - Transaction.Amount;
             }
+
+            Transaction.Wallet = Wallet;    
+
+            _context.Transaction.Add(Transaction);
+            await _context.SaveChangesAsync();
+
 
             return RedirectToPage("./Index");
         }
 
-        private bool TransactionExists(int id)
+
+
+            private bool TransactionExists(int id)
         {
-          return (_context.Transaction?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Transaction?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

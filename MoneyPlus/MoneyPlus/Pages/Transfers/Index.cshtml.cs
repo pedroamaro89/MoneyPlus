@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
 using MoneyPlus.Services.Models;
 
-namespace MoneyPlus.Pages.Wallets
+namespace MoneyPlus.Pages.Transfers
 {
     public class IndexModel : PageModel
     {
@@ -20,20 +19,15 @@ namespace MoneyPlus.Pages.Wallets
             _context = context;
         }
 
-        public IList<Wallet> Wallet { get;set; } = default!;
+        public IList<Transfer> Transfer { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (_context.Wallet != null)
+            if (_context.Transfer != null)
             {
-               /* Wallet = await _context.Wallet
-                .Include(w => w.Category)
-                .Include(w => w.User).ToListAsync();*/
-
-                Wallet = await _context.Wallet.Where(r => r.UserId == userId).ToListAsync();
+                Transfer = await _context.Transfer
+                .Include(t => t.DestinationWallet)
+                .Include(t => t.OriginWallet).ToListAsync();
             }
         }
     }

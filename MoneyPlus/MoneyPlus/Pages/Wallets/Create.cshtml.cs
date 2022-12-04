@@ -40,8 +40,8 @@ namespace MoneyPlus.Pages.Wallets
         {
 
             /*ModelState.Clear();
-            TryValidateModel(Wallet);
-            TryValidateModel(Wallet.Category);*/
+                      TryValidateModel(Wallet);
+  TryValidateModel(Wallet.Category);*/
             Wallet.Category = _context.Category.Where(c => c.ID == Wallet.CategoryID).FirstOrDefault();
         
 
