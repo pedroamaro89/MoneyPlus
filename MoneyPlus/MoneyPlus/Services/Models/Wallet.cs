@@ -10,8 +10,6 @@ namespace MoneyPlus.Services.Models
         public MoneyPlusUser User { get; set; }
         public string UserId { get; set; }
         public string Name { get; set; }
-        public Category Category { get; set; }
-        public int CategoryID { get; set; }
         public double Balance { get; set; }
     }
 }

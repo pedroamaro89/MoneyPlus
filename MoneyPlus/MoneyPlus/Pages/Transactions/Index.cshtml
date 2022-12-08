@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Transaction[0].Wallet)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Transaction[0].Category)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Transaction[0].Payee)
             </th>
             <th>
@@ -39,6 +42,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Wallet.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Payee.Name)

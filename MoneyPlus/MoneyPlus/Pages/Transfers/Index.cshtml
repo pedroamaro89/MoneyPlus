@@ -35,10 +35,10 @@
 @foreach (var item in Model.Transfer) {
         <tr>
            <td>
-                @Html.DisplayFor(modelItem => item.OriginWallet.ID)
+                @Html.DisplayFor(modelItem => item.OriginWallet.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DestinationWallet.ID)
+                @Html.DisplayFor(modelItem => item.DestinationWallet.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)

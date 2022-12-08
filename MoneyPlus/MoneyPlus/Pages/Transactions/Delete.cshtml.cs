@@ -38,12 +38,20 @@ namespace MoneyPlus.Pages.Transactions
             else 
             {
                 Transaction = transaction;
+                Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
+                Transaction.Payee = _context.Payee.Where(r => r.ID == Transaction.PayeeId).FirstOrDefault();
             }
             return Page();
         }
+        public Wallet Wallet { get; set; }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            
+
+
+            //Wallet.Balance = Wallet.Balance - Transaction.Amount;
+
             if (id == null || _context.Transaction == null)
             {
                 return NotFound();
@@ -53,6 +61,19 @@ namespace MoneyPlus.Pages.Transactions
             if (transaction != null)
             {
                 Transaction = transaction;
+                Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
+                //Transaction.Wallet.Balance = Transaction.Wallet.Balance - Transaction.Amount;
+
+                if (Transaction.Type == 0)
+                {
+                    Transaction.Wallet.Balance = Transaction.Wallet.Balance - Transaction.Amount;
+
+                }
+                else
+                {
+                    Transaction.Wallet.Balance = Transaction.Wallet.Balance + Transaction.Amount;
+                }
+
                 _context.Transaction.Remove(Transaction);
                 await _context.SaveChangesAsync();
             }

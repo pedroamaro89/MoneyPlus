@@ -27,11 +27,16 @@ public class MoneyPlusContext : IdentityDbContext<MoneyPlusUser>
 
     public DbSet<MoneyPlus.Services.Models.Category> Category { get; set; } = default!;
 
+    public DbSet<MoneyPlus.Services.Models.SubCategory> SubCategory { get; set; } = default!;
+
     public DbSet<MoneyPlus.Services.Models.Payee> Payee { get; set; } = default!;
 
     public DbSet<MoneyPlus.Services.Models.Transaction> Transaction { get; set; } = default!;
 
     public DbSet<MoneyPlus.Services.Models.Transfer> Transfer { get; set; } = default!;
+
+    public DbSet<MoneyPlus.Services.Models.Asset> Asset { get; set; } = default!;
+
 
 
 }

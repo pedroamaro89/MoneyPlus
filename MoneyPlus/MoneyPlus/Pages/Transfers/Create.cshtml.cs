@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,10 +22,16 @@ namespace MoneyPlus.Pages.Transfers
 
         public IActionResult OnGet()
         {
-       // ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
-        ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>(), "ID", "Name");
+            // ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
+            var originWalletID = int.Parse(Request.Query["id"]);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            OriginWallet = _context.Wallet.Where(r => r.ID == originWalletID).FirstOrDefault();
 
-            ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
+            ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.ID != originWalletID && x.UserId==userId), "ID", "Name");
+
+
+
+            //  ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
         }
 
@@ -55,7 +62,9 @@ namespace MoneyPlus.Pages.Transfers
             _context.Transfer.Add(Transfer);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("./Index");
+            return RedirectToPage("../Transfers/Details", new { id = Transfer.ID });
+
         }
     }
 }

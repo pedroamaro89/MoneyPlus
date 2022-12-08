@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
@@ -26,21 +27,16 @@ namespace MoneyPlus.Pages.Transactions
         public IActionResult OnGet()
         {
         ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
-            // ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "ID");
+
+            //Transaction.Category = _context.Category.Where(c => c.ID == Transaction.CategoryID).FirstOrDefault();
+            ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
 
             var walletID = int.Parse(Request.Query["id"]);
             Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
 
             var typeId = int.Parse(Request.Query["type"]);
 
-            if (typeId == 0)
-            {
-                Type = "Add Money";
-            }
-            else
-            {
-                Type = "Add Expense";
-            }
+            Type = Transaction.GetType(typeId);
 
             return Page();
         }
@@ -76,12 +72,14 @@ namespace MoneyPlus.Pages.Transactions
             }
 
             Transaction.Wallet = Wallet;
-
+            Transaction.Type = typeId;
 
             _context.Transaction.Add(Transaction);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("../Wallets/Details",Wallet.ID);
+            return RedirectToPage("../Wallets/Details", new { id = Wallet.ID });
+
         }
     }
 }

@@ -50,6 +50,7 @@ namespace MoneyPlus.Pages.Wallets
                 return Page();
             }*/
 
+            
             _context.Attach(Wallet).State = EntityState.Modified;
 
             try

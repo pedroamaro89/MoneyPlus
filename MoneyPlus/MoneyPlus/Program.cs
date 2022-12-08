@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Areas.Identity.Data;
 using MoneyPlus.Data;
+using MoneyPlus.Repositories;
 using MoneyPlus.Services.Interfaces;
 using MoneyPlus.Services.Models;
 
@@ -16,7 +17,7 @@ builder.Services.AddDefaultIdentity<MoneyPlusUser>(options => options.SignIn.Req
 
 
 builder.Services.AddDefaultIdentity<MoneyPlusUser>(
-    options => options.SignIn.RequireConfirmedAccount = true)
+    options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MoneyPlusContext>();
 
@@ -25,6 +26,8 @@ builder.Services.AddRazorPages();
 
 
 builder.Services.AddScoped<IWallet, Wallet>();
+builder.Services.AddScoped<TransactionRepository>();
+
 
 
 
@@ -46,5 +49,20 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<MoneyPlusContext>();
+
+    context.Database.Migrate();
+
+    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    CreateRoles.Initialize(context, roleMgr).Wait();
+}
 
 app.Run();

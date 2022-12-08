@@ -19,10 +19,16 @@ namespace MoneyPlus.Pages.Transfers
             _context = context;
         }
 
-      public Transfer Transfer { get; set; } = default!; 
+        public Transfer Transfer { get; set; } = default!;
+        public Wallet OriginWallet { get; set; } = default!;
+        public Wallet DestinationWallet { get; set; } = default!;
+
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
+
+
             if (id == null || _context.Transfer == null)
             {
                 return NotFound();
@@ -36,6 +42,10 @@ namespace MoneyPlus.Pages.Transfers
             else 
             {
                 Transfer = transfer;
+               // var transferID = int.Parse(Request.Query["id"]);
+                OriginWallet = _context.Wallet.Where(r => r.ID == Transfer.OriginWalletID).FirstOrDefault();
+                DestinationWallet = _context.Wallet.Where(r => r.ID == Transfer.DestinationWalletID).FirstOrDefault();
+
             }
             return Page();
         }

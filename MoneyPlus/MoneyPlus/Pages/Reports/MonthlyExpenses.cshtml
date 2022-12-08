@@ -1,0 +1,75 @@
+﻿@page
+@model MoneyPlus.Pages.Reports.IndexModel
+
+@{
+    ViewData["Title"] = "Monthly Expenses";
+}
+
+<h1>Monthly Expenses</h1>
+
+<h5>Month: @Html.DisplayFor(model => model.CurrentMonth)</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.monthExpenses[0].Wallet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monthExpenses[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monthExpenses[0].Payee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monthExpenses[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monthExpenses[0].Amount)
+            </th>
+          
+            <th></th>
+        </tr> 
+    </thead>
+    <tbody>
+@foreach (var item in Model.monthExpenses) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wallet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            
+            
+        </tr>
+
+}
+    </tbody>
+</table>
+
+@if (Model.PrevMonth == 0)
+{
+    <a>Previous Month</a>
+}
+else
+{
+    <a asp-page="./MonthlyExpenses" asp-route-month="@Model.PrevMonth">Previous Month</a>
+}
+| 
+@if (Model.NextMonth == 13)
+{
+   <a>Next Month</a>
+} else
+{
+    <a asp-page="./MonthlyExpenses" asp-route-month="@Model.NextMonth">Next Month</a>
+}

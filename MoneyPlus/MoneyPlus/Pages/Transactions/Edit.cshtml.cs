@@ -36,6 +36,7 @@ namespace MoneyPlus.Pages.Transactions
                 return NotFound();
             }
             Transaction = transaction;
+            oldAmount = Transaction.Amount;
             ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
             ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
@@ -49,44 +50,47 @@ namespace MoneyPlus.Pages.Transactions
         public Wallet Wallet { get; set; }
         public string Type { get; set; }
 
+        [BindProperty]
+        public double oldAmount { get; set;}
+
         public async Task<IActionResult> OnPostAsync()
         {
             /*if (!ModelState.IsValid)
             {
                 return Page();
-            }
-    var typeId = int.Parse(Request.Query["type"]);
-            var walletID = int.Parse(Request.Query["id"]);
-            Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();*/
+            } */
 
-            //_context.Attach(Transaction).State = EntityState.Modified;
+            Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
 
-            var walletID = int.Parse(Request.Query["id"]);
-            Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
+            //var oldTrans = _context.Transaction.Where(r => r.ID == Transaction.ID).FirstOrDefault();
 
+            
+
+            var amountDiference = Transaction.Amount - oldAmount;
 
             if (Transaction.Type == 0)
             {
-                Wallet.Balance = Wallet.Balance + Transaction.Amount;
+                Transaction.Wallet.Balance = Transaction.Wallet.Balance + amountDiference;
 
             }
             else
             {
-                Wallet.Balance = Wallet.Balance - Transaction.Amount;
+                Transaction.Wallet.Balance = Transaction.Wallet.Balance - amountDiference;
             }
 
-            Transaction.Wallet = Wallet;    
+            //Transaction.Wallet = Wallet;    
 
-            _context.Transaction.Add(Transaction);
+            //_context.Transaction.Add(Transaction);
+            _context.Attach(Transaction).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
 
-            return RedirectToPage("./Index");
+           // return RedirectToPage("./Index");
+            return RedirectToPage("../Transactions/Details", new { id = Transaction.ID });
+
         }
 
-
-
-            private bool TransactionExists(int id)
+        private bool TransactionExists(int id)
         {
             return (_context.Transaction?.Any(e => e.ID == id)).GetValueOrDefault();
         }

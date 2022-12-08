@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -25,9 +26,11 @@ namespace MoneyPlus.Pages.Transactions
         {
             if (_context.Transaction != null)
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 Transaction = await _context.Transaction
                 .Include(t => t.Payee)
-                .Include(t => t.Wallet).ToListAsync();
+                .Include(t => t.Category)
+                .Include(t => t.Wallet).Where(t => t.Wallet.UserId == userId).ToListAsync();
             }
         }
     }

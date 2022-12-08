@@ -36,7 +36,16 @@ namespace MoneyPlus.Pages.Transactions
             else 
             {
                 Transaction = transaction;
+                Transaction.Category = _context.Category.Where(r => r.ID == Transaction.CategoryID).FirstOrDefault();
+                Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
+                Transaction.Payee = _context.Payee.Where(r => r.ID == Transaction.PayeeId).FirstOrDefault();
+
             }
+
+
+
+
+
             return Page();
         }
     }

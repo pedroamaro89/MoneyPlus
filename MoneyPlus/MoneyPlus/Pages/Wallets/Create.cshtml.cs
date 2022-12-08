@@ -26,14 +26,14 @@ namespace MoneyPlus.Pages.Wallets
 
         public IActionResult OnGet()
         {
-        ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "ID", "Name");
-        //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "ID", "Name");
+            //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
         [BindProperty]
         public Wallet Wallet { get; set; } = default!;
-        
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -41,17 +41,16 @@ namespace MoneyPlus.Pages.Wallets
 
             /*ModelState.Clear();
                       TryValidateModel(Wallet);
-  TryValidateModel(Wallet.Category);*/
-            Wallet.Category = _context.Category.Where(c => c.ID == Wallet.CategoryID).FirstOrDefault();
-        
+            TryValidateModel(Wallet.Category);*/
+
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Wallet.UserId = userId;
-      
-           /* if (!ModelState.IsValid || _context.Wallet == null || Wallet == null)
-            {
-                return Page();
-            }*/
+
+            /* if (!ModelState.IsValid || _context.Wallet == null || Wallet == null)
+             {
+                 return Page();
+             }*/
 
             _context.Wallet.Add(Wallet);
             await _context.SaveChangesAsync();
