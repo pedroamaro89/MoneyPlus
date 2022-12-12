@@ -15,16 +15,31 @@
             @Html.DisplayNameFor(model => model.Transaction.Wallet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Transaction.Wallet.ID)
+            @Html.DisplayFor(model => model.Transaction.Wallet.Name)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Transaction.Category)
+        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Transaction.Category.Name)
+        </dd>
+          <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Transaction.SubCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Transaction.SubCategory.Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Transaction.Payee)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Transaction.Payee.Name)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Transaction.Asset)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Transaction.Asset.Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Transaction.Date)

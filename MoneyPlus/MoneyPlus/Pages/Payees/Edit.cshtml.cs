@@ -36,6 +36,7 @@ namespace MoneyPlus.Pages.Payees
                 return NotFound();
             }
             Payee = payee;
+           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 

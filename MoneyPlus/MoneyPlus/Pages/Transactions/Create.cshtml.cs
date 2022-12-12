@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Azure.Core;
@@ -26,11 +27,14 @@ namespace MoneyPlus.Pages.Transactions
 
         public IActionResult OnGet()
         {
-        ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
 
-            //Transaction.Category = _context.Category.Where(c => c.ID == Transaction.CategoryID).FirstOrDefault();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["PayeeId"] = new SelectList(_context.Payee.Where(x => x.UserId == userId), "ID", "Name");
+
+
             ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
-
+            ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "ID", "Name");
+            ViewData["AssetId"] = new SelectList(_context.Asset.Where(x => x.UserId == userId), "ID", "Name");
             var walletID = int.Parse(Request.Query["id"]);
             Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
 
@@ -59,7 +63,6 @@ namespace MoneyPlus.Pages.Transactions
             var walletID = int.Parse(Request.Query["id"]);
             Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
 
-            
 
             var typeId = int.Parse(Request.Query["type"]);
             if (typeId == 0) //add money
@@ -71,6 +74,11 @@ namespace MoneyPlus.Pages.Transactions
                 Wallet.Balance = Wallet.Balance - Transaction.Amount;
             }
 
+            if (Transaction.AssetId==0) 
+            {
+                Transaction.AssetId = null;
+            }
+
             Transaction.Wallet = Wallet;
             Transaction.Type = typeId;
 
@@ -78,7 +86,7 @@ namespace MoneyPlus.Pages.Transactions
             await _context.SaveChangesAsync();
 
             //return RedirectToPage("../Wallets/Details",Wallet.ID);
-            return RedirectToPage("../Wallets/Details", new { id = Wallet.ID });
+            return RedirectToPage("../Transactions/Details", new { id = Transaction.ID });
 
         }
     }

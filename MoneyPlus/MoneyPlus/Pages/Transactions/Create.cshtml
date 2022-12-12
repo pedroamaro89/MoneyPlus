@@ -37,28 +37,18 @@
         
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="Transaction.WalletId" class="control-label"></label>
-                <select asp-for="Transaction.WalletId" class ="form-control" asp-items="ViewBag.WalletId"></select>
-            </div>
-            *@
-            @*<div class="form-group">
-                <label class="control-label">Wallet</label>
-                <input disabled asp-for="Wallet.Name" class="form-control" />     
-                <span asp-validation-for="Wallet.Name" class="text-danger"></span>
-            </div> *@
-
-           @* <div class="form-group">
-                <label asp-for="Transaction.Type" class="control-label"></label>
-                <input disabled asp-for="Type" class="form-control" />
-                <span asp-validation-for="Transaction.Type" class="text-danger"></span>
-            </div>*@
 
             <div class="form-group">
                 <label class="control-label">Category</label>
                 <select asp-for="Transaction.CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
                 <span asp-validation-for="Transaction.CategoryID" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label class="control-label">SubCategory</label>
+                <select asp-for="Transaction.SubCategoryID" class="form-control" asp-items="ViewBag.SubCategoryID"></select>
+                <span asp-validation-for="Transaction.SubCategoryID" class="text-danger"></span>
+            </div>
+
 
             <div class="form-group">
                 <label asp-for="Transaction.PayeeId" class="control-label"></label>
@@ -66,7 +56,13 @@
                 <span asp-validation-for="Transaction.PayeeId" class="text-danger"></span> <a asp-page="/Payees/Create">  Add Payee</a>
                
             </div>
-
+            <div class="form-group">
+                <label class="control-label">Assets</label>
+                <select asp-for="Transaction.AssetId" class="form-control" asp-items="ViewBag.AssetId">
+                    <option value="0">--Select Asset--</option>
+                </select>
+                <span asp-validation-for="Transaction.AssetId" class="text-danger"></span>
+            </div>
            
 
             <div class="form-group">

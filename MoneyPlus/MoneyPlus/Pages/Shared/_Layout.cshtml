@@ -22,9 +22,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+            
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -37,8 +35,35 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Transfers/Index">Transfers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">MonthlyExpenses</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">Monthly Expenses</a>
                             </li>
+
+                              <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ExpensesByYear">Expenses by Year</a>
+                            </li>
+
+                            <asp:dropdownlist runat="server" id="ddlReports">
+                                <asp:listitem text="Monthly Expenses" value="1"></asp:listitem>
+                                <asp:listitem text="Black" value="2"></asp:listitem>
+                                <asp:listitem text="Blue" value="3"></asp:listitem>
+                                <asp:listitem text="Green" value="4"></asp:listitem>
+                                <asp:listitem text="Yellow" value="5"></asp:listitem>
+                            </asp:dropdownlist>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Payees/Index">Payees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Assets/Index">Assets</a>
+                            </li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
+                            </li>
+                            }
+
                         }
                     </ul>
                     <partial name="_LoginPartial" />

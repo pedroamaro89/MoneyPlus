@@ -37,6 +37,6 @@ public class MoneyPlusContext : IdentityDbContext<MoneyPlusUser>
 
     public DbSet<MoneyPlus.Services.Models.Asset> Asset { get; set; } = default!;
 
-
+	public DbSet<MoneyPlus.Repositories.TransactionRepository.MonthlyExpensesModel> MonthlyExpensesModel { get; set; } = default!;
 
 }

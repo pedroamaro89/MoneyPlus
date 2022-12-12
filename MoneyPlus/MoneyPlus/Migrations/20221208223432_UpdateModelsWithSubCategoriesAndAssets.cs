@@ -44,11 +44,11 @@ namespace MoneyPlus.Migrations
                 nullable: false,
                 defaultValue: 0);
 
-            migrationBuilder.AddColumn<int>(
+           /* migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
                 table: "Category",
                 type: "int",
-                nullable: true);
+                nullable: true);*/
 
             migrationBuilder.AddColumn<string>(
                 name: "Discriminator",
@@ -57,17 +57,18 @@ namespace MoneyPlus.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.AddColumn<int>(
-                name: "SubID",
+            ////////////////
+          /*  migrationBuilder.AddColumn<int>(
+                name: "ID",
                 table: "Category",
                 type: "int",
-                nullable: true);
+                nullable: true);*/
 
-            migrationBuilder.AddColumn<string>(
-                name: "SubName",
+           /* migrationBuilder.AddColumn<string>(
+                name: "Name",
                 table: "Category",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true);*/
 
             migrationBuilder.CreateTable(
                 name: "Asset",
@@ -97,17 +98,17 @@ namespace MoneyPlus.Migrations
                 table: "Transaction",
                 column: "SubCategoryID");
 
-            migrationBuilder.CreateIndex(
+         /*   migrationBuilder.CreateIndex(
                 name: "IX_Category_CategoryId",
                 table: "Category",
-                column: "CategoryId");
+                column: "CategoryId");*/
 
-            migrationBuilder.AddForeignKey(
+          /*  migrationBuilder.AddForeignKey(
                 name: "FK_Category_Category_CategoryId",
                 table: "Category",
                 column: "CategoryId",
                 principalTable: "Category",
-                principalColumn: "ID");
+                principalColumn: "ID");*/
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Transaction_Asset_AssetId",
@@ -190,11 +191,11 @@ namespace MoneyPlus.Migrations
                 table: "Category");
 
             migrationBuilder.DropColumn(
-                name: "SubID",
+                name: "ID",
                 table: "Category");
 
             migrationBuilder.DropColumn(
-                name: "SubName",
+                name: "Name",
                 table: "Category");
 
 

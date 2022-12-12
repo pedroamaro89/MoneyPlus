@@ -180,6 +180,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VjcmV0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Assets/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Assets/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Assets/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Assets/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Assets/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXNzZXRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -232,6 +252,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Reports/ExpensesByYear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0c1xFeHBlbnNlc0J5WWVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Reports/MonthlyExpenses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0c1xNb250aGx5RXhwZW5zZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -242,6 +266,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/SubCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/SubCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/SubCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/SubCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/SubCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Transactions/Create.cshtml]

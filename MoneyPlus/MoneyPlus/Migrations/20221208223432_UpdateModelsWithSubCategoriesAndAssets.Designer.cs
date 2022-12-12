@@ -406,10 +406,10 @@ namespace MoneyPlus.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -23,11 +23,14 @@ namespace MoneyPlus.Pages.Categories
         }
 
         public IList<Category> Category { get;set; } = default!;
+        public SubCategory Subcategories { get; set; }
 
         public async Task OnGetAsync()
         {
             if (_context.Category != null)
             {
+                //Subcategories.Category = _context.Category.Where(r => r.ID == Subcategories.CategoryId).FirstOrDefault();
+
                 Category = await _context.Category.ToListAsync();
             }
         }

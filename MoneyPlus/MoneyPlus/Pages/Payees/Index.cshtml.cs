@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -25,7 +26,9 @@ namespace MoneyPlus.Pages.Payees
         {
             if (_context.Payee != null)
             {
-                Payee = await _context.Payee.ToListAsync();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                Payee = await _context.Payee.Where(p => p.UserId == userId).ToListAsync();
             }
         }
     }

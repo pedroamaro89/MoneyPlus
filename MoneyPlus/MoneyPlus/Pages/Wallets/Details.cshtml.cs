@@ -67,9 +67,15 @@ namespace MoneyPlus.Pages.Wallets
                     }
                 }
 
-                Transaction = await _context.Transaction.Where(r => r.WalletId == Wallet.ID).ToListAsync();
 
-                foreach (var item in Transaction)
+                Transaction = await _context.Transaction
+                    .Include(t => t.Payee)
+                    .Include(t => t.Category)
+                    .Include(t => t.SubCategory)
+                    .Include(t => t.Asset)
+                    .Where(t => t.WalletId == Wallet.ID).ToListAsync();
+
+                /*foreach (var item in Transaction)
                 {
                     if (item.Payee == null)
                     {
@@ -78,7 +84,7 @@ namespace MoneyPlus.Pages.Wallets
 
                     //Type = Trans.GetType(item.Type);
                    
-                }
+                }*/
 
 
                 //var typeId = int.Parse(Request.Query["type"]);

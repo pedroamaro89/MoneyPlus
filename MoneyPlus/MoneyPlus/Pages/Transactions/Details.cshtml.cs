@@ -39,7 +39,8 @@ namespace MoneyPlus.Pages.Transactions
                 Transaction.Category = _context.Category.Where(r => r.ID == Transaction.CategoryID).FirstOrDefault();
                 Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
                 Transaction.Payee = _context.Payee.Where(r => r.ID == Transaction.PayeeId).FirstOrDefault();
-
+                Transaction.SubCategory = _context.SubCategory.Where(r => r.ID == Transaction.SubCategoryID).FirstOrDefault();
+                Transaction.Asset = _context.Asset.Where(r => r.ID == Transaction.AssetId).FirstOrDefault();
             }
 
 

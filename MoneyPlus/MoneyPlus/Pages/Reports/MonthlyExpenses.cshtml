@@ -2,7 +2,7 @@
 @model MoneyPlus.Pages.Reports.IndexModel
 
 @{
-    ViewData["Title"] = "Monthly Expenses";
+	ViewData["Title"] = "Monthly Expenses";
 }
 
 <h1>Monthly Expenses</h1>
@@ -10,66 +10,117 @@
 <h5>Month: @Html.DisplayFor(model => model.CurrentMonth)</h5>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.monthExpenses[0].Wallet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monthExpenses[0].Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monthExpenses[0].Payee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monthExpenses[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.monthExpenses[0].Amount)
-            </th>
-          
-            <th></th>
-        </tr> 
-    </thead>
-    <tbody>
-@foreach (var item in Model.monthExpenses) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wallet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Payee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            
-            
-        </tr>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Wallet)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Category)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].SubCategory)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Payee)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Asset)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Date)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.monthExpenses[0].Amount)
+			</th>
 
-}
-    </tbody>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.monthExpenses)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Wallet)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SubCategory)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Payee)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Asset)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Date)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Amount)
+				</td>
+
+
+			</tr>
+
+		}
+	</tbody>
 </table>
+
+
+@*
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>*@
+	
+<form method="get">
+	<div class="form-group">
+		<label class="control-label">Category</label>
+		<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+			<option value="0">--Select Category--</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label class="control-label">Assets</label>
+		<select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetId">
+			<option value="0">--Select Asset--</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label class="control-label">Payees</label>
+		<select asp-for="PayeeId" class="form-control" asp-items="ViewBag.PayeeId">
+			<option value="0">--Select Payee--</option>
+		</select>
+	</div>
+	<input type="hidden" asp-for="@Model.CurrentMonth" />
+	<input type="submit" value="Filter" asp-page-handler="Filter"/>
+	@*<a asp-page-handler="Filter" class="btn btn-primary" asp-route-cat="@Model.CategoryId" type="button" style="border-color: inherit">*@
+	
+</a>
+</form>
+
 
 @if (Model.PrevMonth == 0)
 {
-    <a>Previous Month</a>
+	<a>Previous Month</a>
 }
 else
 {
-    <a asp-page="./MonthlyExpenses" asp-route-month="@Model.PrevMonth">Previous Month</a>
+	<a asp-page="./MonthlyExpenses" asp-route-CurrentMonth="@Model.PrevMonth">Previous Month</a>
 }
-| 
+|
 @if (Model.NextMonth == 13)
 {
-   <a>Next Month</a>
-} else
+	<a>Next Month</a>
+}
+else
 {
-    <a asp-page="./MonthlyExpenses" asp-route-month="@Model.NextMonth">Next Month</a>
+	<a asp-page="./MonthlyExpenses" asp-route-CurrentMonth="@Model.NextMonth">Next Month</a>
 }

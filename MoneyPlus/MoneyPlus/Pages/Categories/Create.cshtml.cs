@@ -42,7 +42,8 @@ namespace MoneyPlus.Pages.Categories
             _context.Category.Add(Category);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
-        }
-    }
+			return RedirectToPage("../Categories/Details", new { id = Category.ID });
+
+		}
+	}
 }

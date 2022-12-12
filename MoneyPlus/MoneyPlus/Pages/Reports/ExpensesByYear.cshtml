@@ -1,0 +1,45 @@
+﻿@page
+@model MoneyPlus.Pages.Reports.ExpensesByYearModel
+
+@{
+	ViewData["Title"] = "Expenses by year";
+}
+
+<h1>Expenses by Year</h1>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+
+			@foreach (var item in Model.years)
+		{
+			<th>
+					@Html.DisplayFor(modelItem => item)
+			</th>
+		}
+			
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var item in Model.yearExpenses)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Amount)
+				</td>
+				
+			</tr>
+
+		}
+	</tbody>
+</table>
+
+
+

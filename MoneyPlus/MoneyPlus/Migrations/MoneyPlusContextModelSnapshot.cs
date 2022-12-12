@@ -236,7 +236,13 @@ namespace MoneyPlus.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Asset");
                 });
@@ -249,10 +255,6 @@ namespace MoneyPlus.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -260,10 +262,6 @@ namespace MoneyPlus.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Category");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("MoneyPlus.Services.Models.Payee", b =>
@@ -274,7 +272,33 @@ namespace MoneyPlus.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("NIF")
+                    b.Property<int?>("NIF")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payee");
+                });
+
+            modelBuilder.Entity("MoneyPlus.Services.Models.SubCategory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -283,7 +307,9 @@ namespace MoneyPlus.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Payee");
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("MoneyPlus.Services.Models.Transaction", b =>
@@ -297,7 +323,7 @@ namespace MoneyPlus.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<int>("AssetId")
+                    b.Property<int?>("AssetId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryID")
@@ -307,7 +333,6 @@ namespace MoneyPlus.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PayeeId")
@@ -396,25 +421,6 @@ namespace MoneyPlus.Migrations
                     b.ToTable("Wallet");
                 });
 
-            modelBuilder.Entity("MoneyPlus.Services.Models.SubCategory", b =>
-                {
-                    b.HasBaseType("MoneyPlus.Services.Models.Category");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasDiscriminator().HasValue("SubCategory");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -466,13 +472,44 @@ namespace MoneyPlus.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MoneyPlus.Services.Models.Asset", b =>
+                {
+                    b.HasOne("MoneyPlus.Areas.Identity.Data.MoneyPlusUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MoneyPlus.Services.Models.Payee", b =>
+                {
+                    b.HasOne("MoneyPlus.Areas.Identity.Data.MoneyPlusUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MoneyPlus.Services.Models.SubCategory", b =>
+                {
+                    b.HasOne("MoneyPlus.Services.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("MoneyPlus.Services.Models.Transaction", b =>
                 {
                     b.HasOne("MoneyPlus.Services.Models.Asset", "Asset")
                         .WithMany()
-                        .HasForeignKey("AssetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssetId");
 
                     b.HasOne("MoneyPlus.Services.Models.Category", "Category")
                         .WithMany()
@@ -537,17 +574,6 @@ namespace MoneyPlus.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MoneyPlus.Services.Models.SubCategory", b =>
-                {
-                    b.HasOne("MoneyPlus.Services.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MoneyPlus.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoneyPlus.Services.Models
 {
@@ -8,6 +9,9 @@ namespace MoneyPlus.Services.Models
         public int ID { get; set; }
 
         public string Name { get; set; }
-        public int? NIF { get; set; } 
+        public int? NIF { get; set; }
+        public MoneyPlusUser User { get; set; }
+        public string UserId { get; set; }
+
     }
 }
