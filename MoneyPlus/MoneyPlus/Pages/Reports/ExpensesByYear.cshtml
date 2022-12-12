@@ -7,11 +7,10 @@
 
 <h1>Expenses by Year</h1>
 
-
 <table class="table">
 	<thead>
 		<tr>
-			<th></th>
+			<th>Category</th>
 
 			@foreach (var item in Model.years)
 		{
@@ -25,20 +24,45 @@
 	</thead>
 	<tbody>
 
-		@foreach (var item in Model.yearExpenses)
+		@foreach (var item in Model.catgs)
 		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Category)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Amount)
-				</td>
-				
-			</tr>
+				<tr>
 
+				<td>
+					@Html.DisplayFor(modelItem => item)
+				</td>
+
+				@foreach (var item2 in Model.years)
+				{
+					<td>
+						@foreach (var item3 in Model.yearExpenses)
+					{
+							
+							@(item3.Category == item && item3.Year == item2 ? @Html.DisplayFor(modelItem => item3.Amount) : "")
+						
+						}
+					</td>
+				}
+				</tr>
 		}
+	
 	</tbody>
+	<tfoot>
+		<tr>
+			<th>Total</th>
+			
+			
+				@foreach (var item in Model.total)
+				{
+				<th>
+					@Html.DisplayFor(modelItem => item.Value)
+				</th>
+					}
+
+			
+		</tr>
+
+	</tfoot>
 </table>
 
 

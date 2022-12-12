@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Security.Claims;
@@ -34,6 +35,10 @@ namespace MoneyPlus.Pages.Reports
 
 		public List<string> years { get; set; }
 
+		public List<string> catgs { get; set; }
+
+		public Dictionary<string, double>  total { get; set; }
+
 		public async Task OnGetAsync()
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -48,13 +53,26 @@ namespace MoneyPlus.Pages.Reports
             .Select(grp => new TransactionRepository.ExpensesByYearModel { Category = grp.First().Category, Year =grp.First().Year, Amount = grp.Sum(t => t.Amount) })
             .ToList();*/
 
-            var distYears = yearExpenses.DistinctBy(y => y.Year).ToList();
+			//var total = yearExpenses.GroupBy(t => t.Year).Select(grp => new { Year = grp.First().Year, Sum = grp.Sum(t => t.Amount) }).OrderBy(t=> t.Year).ToList();
+
+			total = yearExpenses.GroupBy(z => z.Year).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount)); 
+
+			var distYears = yearExpenses.DistinctBy(y => y.Year).ToList();
+
+			var distCategories = yearExpenses.DistinctBy(y => y.Category).ToList();
 
 			years = new List<string>();
 
 			foreach (var item in distYears)
 			{
 				years.Add(item.Year);
+			}
+
+			catgs = new List<string>();
+
+			foreach (var item in distCategories)
+			{
+				catgs.Add(item.Category);
 			}
 		}
 
