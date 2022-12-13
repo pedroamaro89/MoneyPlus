@@ -23,7 +23,7 @@ namespace MoneyPlus.Pages.Categories
         }
 
         public IList<Category> Category { get;set; } = default!;
-        public SubCategory Subcategories { get; set; }
+        public IList<SubCategory> SubCategory { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -32,6 +32,14 @@ namespace MoneyPlus.Pages.Categories
                 //Subcategories.Category = _context.Category.Where(r => r.ID == Subcategories.CategoryId).FirstOrDefault();
 
                 Category = await _context.Category.ToListAsync();
+            }
+
+            if (_context.SubCategory != null)
+            {
+                /*  SubCategory = await _context.SubCategory
+                  .Include(s => s.Category).ToListAsync();*/
+
+                SubCategory = await _context.SubCategory.ToListAsync();
             }
         }
     }

@@ -176,6 +176,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Admin/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Admin/Secret.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VjcmV0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -250,6 +254,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Reports/CompleteReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0c1xDb21wbGV0ZVJlcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Pedro Amaro/source/repos/MoneyPlus/MoneyPlus/MoneyPlus/Pages/Reports/ExpensesByYear.cshtml]

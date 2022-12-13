@@ -36,7 +36,7 @@ namespace MoneyPlus.Pages.SubCategories
                 return NotFound();
             }
             SubCategory = subcategory;
-           ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Discriminator");
+           ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
             return Page();
         }
 
@@ -44,10 +44,10 @@ namespace MoneyPlus.Pages.SubCategories
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return Page();
-            }
+            }*/
 
             _context.Attach(SubCategory).State = EntityState.Modified;
 

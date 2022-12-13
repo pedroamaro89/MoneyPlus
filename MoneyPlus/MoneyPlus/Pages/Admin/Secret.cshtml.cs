@@ -104,11 +104,23 @@ namespace MoneyPlus.Pages.Admin
         }
 
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        }
+
+			string pagePassword = Request.Query["pwd"];
+
+			if (pagePassword == "pouco-segura")
+			{
+				return Page();
+			}
+			else
+			{
+				return Redirect("./error");
+
+			}
+		}
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MoneyPlus.Pages.Reports;
 using MoneyPlus.Services.Models;
 using System.Linq;
 
@@ -78,6 +79,32 @@ namespace MoneyPlus.Repositories
             return await result.ToListAsync();
 		}
 
+		public async Task<List<CompleteReportModel>> GetCompleteReport(string userId)
+		{
+
+			var result = from trans in _context.Transaction
+						 join wallet in _context.Wallet on trans.WalletId equals wallet.ID
+						 join category in _context.Category on trans.CategoryID equals category.ID
+						 join subcategory in _context.SubCategory on trans.SubCategoryID equals subcategory.ID
+						 where wallet.UserId == userId & trans.Type == 1
+
+						 select new CompleteReportModel
+						 {
+							 Category = category.Name,
+							 SubCategory = subcategory.Name,	
+							 Year = trans.Date.Year.ToString(),
+							 Month = trans.Date.Month.ToString(),
+							 Amount = trans.Amount,
+
+						 };
+
+			result = result.GroupBy(t => new { t.Category, t.Year })
+					.Select(grp => new CompleteReportModel { Category = grp.First().Category, SubCategory = grp.First().SubCategory, Month = grp.First().Month, Amount = grp.Sum(t => t.Amount) });
+
+
+			return await result.ToListAsync();
+		}
+
 
 		[Keyless]
 		public class MonthlyExpensesModel
@@ -107,5 +134,16 @@ namespace MoneyPlus.Repositories
 			public double Amount { get; set; }
 		}
 
+
+		public class CompleteReportModel
+		{
+			public string Category { get; set; }
+			public string SubCategory { get; set; }
+
+			public string Year { get; set; }
+			public string Month { get; set; }
+
+			public double Amount { get; set; }
+		}
 	}
 }

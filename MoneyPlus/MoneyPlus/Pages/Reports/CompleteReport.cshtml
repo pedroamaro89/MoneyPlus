@@ -1,0 +1,79 @@
+﻿
+
+@page
+@model MoneyPlus.Pages.Reports.CompleteReport
+
+@{
+	ViewData["Title"] = "Expenses by year";
+}
+
+<h1>Complete Report</h1>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Category</th>
+
+			@foreach(var item in Model.months)
+		{
+			<th>
+					@Html.DisplayFor(modelItem => item)
+			</th>
+		}
+			
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		
+
+
+		@foreach (var item in Model.catgs)
+		{
+			<tr>
+			@foreach (var item4 in Model.subcatgs)
+			{
+				<td>
+					@Html.DisplayFor(modelItem => item)
+				</td>
+					<td>
+						@(item4 == item ? @Html.DisplayFor(modelItem => item4) : "")
+					</td>
+					}
+
+					@foreach (var item2 in Model.months)
+				{
+					<td>
+						@foreach (var item3 in Model.completeReport)
+					{
+							
+							@(item3.Category == item && item3.Month == item2 ? @Html.DisplayFor(modelItem => item3.Amount) : "")
+						
+						}
+					</td>
+				}
+				</tr>
+		}
+	
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>Total</th>
+			
+			
+				@foreach (var item in Model.total)
+				{
+				<th>
+					@Html.DisplayFor(modelItem => item.Value)
+				</th>
+					}
+
+		</tr>
+
+	</tfoot>
+</table>
+
+
+
+

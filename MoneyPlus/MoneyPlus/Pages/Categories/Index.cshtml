@@ -38,3 +38,38 @@
 
 <h1>SubCategories</h1>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategory[0].ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategory[0].Name)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SubCategory)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+
+                <td>
+                    <a asp-page="../SubCategories/Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="../SubCategories/Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="../SubCategories/Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
