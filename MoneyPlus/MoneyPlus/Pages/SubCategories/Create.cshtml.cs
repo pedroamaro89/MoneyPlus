@@ -23,7 +23,7 @@ namespace MoneyPlus.Pages.SubCategories
 
         public IActionResult OnGet()
         {
-       // ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Discriminator");
+        ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
             return Page();
         }
 

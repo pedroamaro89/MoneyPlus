@@ -73,26 +73,6 @@ namespace MoneyPlus.Pages.Reports
 				PrevMonth = CurrentMonth - 1;
 				NextMonth = CurrentMonth + 1;
 
-				/*var parameters = new List<object>();
-				parameters.Add(new SqlParameter("userId", userId));
-				parameters.Add(new SqlParameter("month", 12));
-
-				IList<MonthlyExpensesModel> list = _context.Database.SqlQueryRaw<MonthlyExpensesModel>("SELECT w.Name AS Wallet,  c.Name AS Category, p.Name AS Payee," +
-					" CONVERT(date, t.Date) AS Date, t.Amount" +
-					"FROM dbo.[Transaction]" +
-					"INNER JOIN Wallet w ON (w.ID = WalletId)" +
-					"INNER JOIN Category c ON (c.ID = CategoryID)" +
-					"INNER JOIN Payee p ON (p.ID = PayeeId)" +
-					"WHERE w.UserId= @userId" +
-					"AND Type = 1" +
-					"AND DATEPART(MONTH, t.Date) = @month", parameters.ToArray()).ToList();
-
-				using (var con = new SqlConnection(ConfigurationManager.Con))
-				{
-					return con.Query<Movie>("SELECT * FROM Movies");
-				}
-                */
-
 				var paramCategory = Request.Query["CategoryId"];
 				var paramAsset = Request.Query["AssetId"];
 				var paramPayee = Request.Query["PayeeId"];

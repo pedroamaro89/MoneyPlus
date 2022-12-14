@@ -79,14 +79,14 @@ namespace MoneyPlus.Repositories
             return await result.ToListAsync();
 		}
 
-		public async Task<List<CompleteReportModel>> GetCompleteReport(string userId)
+		public async Task<List<CompleteReportModel>> GetCompleteReport(string userId, int year)
 		{
 
 			var result = from trans in _context.Transaction
 						 join wallet in _context.Wallet on trans.WalletId equals wallet.ID
 						 join category in _context.Category on trans.CategoryID equals category.ID
 						 join subcategory in _context.SubCategory on trans.SubCategoryID equals subcategory.ID
-						 where wallet.UserId == userId & trans.Type == 1
+						 where wallet.UserId == userId & trans.Type == 1 & trans.Date.Year == year
 
 						 select new CompleteReportModel
 						 {
@@ -98,7 +98,7 @@ namespace MoneyPlus.Repositories
 
 						 };
 
-			result = result.GroupBy(t => new { t.Category, t.Year })
+			result = result.GroupBy(t => new { t.Category, t.SubCategory, t.Month })
 					.Select(grp => new CompleteReportModel { Category = grp.First().Category, SubCategory = grp.First().SubCategory, Month = grp.First().Month, Amount = grp.Sum(t => t.Amount) });
 
 

@@ -35,15 +35,19 @@ namespace MoneyPlus.Pages.Reports
 		//public IList<Transaction> Transaction { get;set; } = default!;
 		public List<CompleteReportModel> completeReport { get; set; }
 
-		public List<string> months { get; set; }
+		//public List<int> months { get; set; }
+		public Dictionary<int, string> months { get; set; }
 
 		public List<string> catgs { get; set; }
 		public List<string> subcatgs { get; set; }
-		public List<string> years { get; set; }
-		public List<string> catsandsubcats { get; set; }
+	
+		public int CurrentYear { get; set; }
+		public int PrevYear { get; set; }
+		public int NextYear { get; set; }
 
+		public List<KeyValuePair<int, string>> catsAndSubcats { get; set; }
 
-		public Dictionary<string, double>  total { get; set; }
+        public Dictionary<string, double> total { get; set; }
 
 		public async Task OnGetAsync()
 		{
@@ -51,7 +55,22 @@ namespace MoneyPlus.Pages.Reports
 
 			if (_context.Transaction != null)
 			{
-				completeReport = await _transactionRepository.GetCompleteReport(userId);
+				var paramYear = Request.Query["CurrentYear"];
+
+				if (paramYear.Count != 0)
+				{
+					CurrentYear = int.Parse(paramYear);
+				}
+				else
+				{
+					CurrentYear = System.DateTime.Now.Year;
+				}
+
+				PrevYear = CurrentYear - 1;
+				NextYear = CurrentYear + 1;
+
+
+				completeReport = await _transactionRepository.GetCompleteReport(userId, CurrentYear);
 			}
 
 			total = completeReport.GroupBy(z => z.Month).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount));
@@ -65,18 +84,35 @@ namespace MoneyPlus.Pages.Reports
 			var distSubCategories = completeReport.DistinctBy(y => y.SubCategory).ToList();
 
 
-			years = new List<string>();
+			/*years = new List<string>();
 
 			foreach (var item in distYears)
 			{
 				years.Add(item.Year);
-			}
-			months = new List<string>();
+			}*/
 
-			foreach (var item in distMonths)
+
+			//months = new List<int>();
+			months = new Dictionary<int, string>
 			{
-				months.Add(item.Month);
-			}
+				{ 1, "Jan" },
+				{ 2, "Feb" },
+				{ 3, "Mar" },
+				{ 4, "Apr" },
+				{ 5, "May" },
+				{ 6, "Jun" },
+				{ 7, "Jul" },
+				{ 8, "Aug" },
+				{ 9, "Sep" },
+				{ 10, "Oct" },
+				{ 11, "Nov" },
+				{ 12, "Dec" }
+			};
+
+			/*foreach (var item in distMonths)
+			{
+				months.Add(int.Parse(item.Month));
+			}*/
 
 			catgs = new List<string>();
 
@@ -91,19 +127,23 @@ namespace MoneyPlus.Pages.Reports
 				subcatgs.Add(item.SubCategory);
 			}
 
-			for (int i = 0; i < distCategories.Count; i++)
+            catsAndSubcats = new List<KeyValuePair<int, string>>();
+
+            for (int i = 0; i < catgs.Count; i++)
 			{
+				catsAndSubcats.Add(new KeyValuePair<int, string>(0, catgs[i]));
+
+
 				for (int j = 0; j < distSubCategories.Count; j++)
 				{
-					catsandsubcats.Add(distCategories[i].Category);
+					if (distSubCategories[j].Category == catgs[i])
+						catsAndSubcats.Add(new KeyValuePair<int, string>(1, subcatgs[j]));
 
-					while (distSubCategories[j].Category == distCategories[i].Category)
-					{
-						catsandsubcats.Add(subcatgs[j]);
-					}
 				}
 			}
-		}
+
+		
+
 
 		}
 
@@ -111,4 +151,5 @@ namespace MoneyPlus.Pages.Reports
 
 
 	}
+}
 

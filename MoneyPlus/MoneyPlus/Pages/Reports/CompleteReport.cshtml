@@ -1,6 +1,5 @@
-﻿
+﻿@page
 
-@page
 @model MoneyPlus.Pages.Reports.CompleteReport
 
 @{
@@ -9,6 +8,7 @@
 
 <h1>Complete Report</h1>
 
+<h5>Year: @Html.DisplayFor(model => model.CurrentYear)</h5>
 
 <table class="table">
 	<thead>
@@ -18,7 +18,7 @@
 			@foreach(var item in Model.months)
 		{
 			<th>
-					@Html.DisplayFor(modelItem => item)
+					@Html.DisplayFor(modelItem => item.Value)
 			</th>
 		}
 			
@@ -26,48 +26,65 @@
 		</tr>
 	</thead>
 	<tbody>
-		
 
 
-		@foreach (var item in Model.catgs)
+
+		@foreach (var item in Model.catsAndSubcats)
 		{
-			<tr>
-			@foreach (var item4 in Model.subcatgs)
-			{
-				<td>
-					@Html.DisplayFor(modelItem => item)
-				</td>
-					<td>
-						@(item4 == item ? @Html.DisplayFor(modelItem => item4) : "")
-					</td>
-					}
+			<tr style="font-weight:@(item.Key==0 ? "bold" : "" )">
 
-					@foreach (var item2 in Model.months)
+				<td>
+					@Html.DisplayFor(modelItem => item.Value)
+				</td>
+
+				@foreach (var item2 in Model.months)
 				{
+					double sum = 0;
+
 					<td>
-						@foreach (var item3 in Model.completeReport)
-					{
-							
-							@(item3.Category == item && item3.Month == item2 ? @Html.DisplayFor(modelItem => item3.Amount) : "")
 						
+						@foreach (var item3 in Model.completeReport)
+						{
+							@if (item.Key == 0) // 0 -- categories | 1 -- subCategories 
+							{
+								@if (item3.Category == item.Value && int.Parse(item3.Month) == item2.Key) { // se for categoria soma o valor das subCategorias
+									sum += item3.Amount;
+								} 
+							}
+							else if (item.Key == 1)
+							{
+								@(item3.SubCategory == item.Value && int.Parse(item3.Month) == item2.Key ? @Html.DisplayFor(modelItem => item3.Amount) : "")
+							}
+
+				}
+				@if (item.Key == 0) //se for categoria apresenta no fim do for each o valor do sum final
+						{
+							@Html.DisplayTextFor(m => sum)
 						}
 					</td>
 				}
-				</tr>
+			</tr>
 		}
 	
 	</tbody>
 	<tfoot>
 		<tr>
 			<th>Total</th>
-			
-			
-				@foreach (var item in Model.total)
-				{
+
+			@foreach (var item in Model.months)
+			{
 				<th>
-					@Html.DisplayFor(modelItem => item.Value)
+				@foreach (var item2 in Model.total)
+				{
+				
+					@if (int.Parse(item2.Key) == item.Key)
+					{
+						@Html.DisplayFor(modelItem => item2.Value)
+						} 
+				
+				}
 				</th>
-					}
+			}
 
 		</tr>
 
@@ -77,3 +94,7 @@
 
 
 
+
+<a asp-page="./CompleteReport" asp-route-CurrentYear="@Model.PrevYear">Previous Year</a>
+
+<a asp-page="./CompleteReport" asp-route-CurrentYear="@Model.NextYear">Next Year</a>
