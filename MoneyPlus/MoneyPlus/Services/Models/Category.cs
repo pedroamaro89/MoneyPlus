@@ -6,4 +6,10 @@
         public string Name { get; set; } 
         
     }
+
+	public class CategoriesSub
+	{
+		public Category category { get; set; }
+		public List<SubCategory> subCategories { get; set; }
+	}
 }

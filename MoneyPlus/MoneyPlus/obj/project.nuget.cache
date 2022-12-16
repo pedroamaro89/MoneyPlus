@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BD1PX3oDkNWQFrNeRkCxk1JT9qGCMym03WLzjxQKJ0dcM/LUX+1ONXxH6y8T3u2AYxd0oSoyP2+//fE5eAoZiA==",
+  "dgSpecHash": "84wr2neRPO38tL4kdUnIsWF6OySqqfDG4p+NnoLFi7yNs/gA3eL/M0YBgX1zwcoHNlz1t6shNLmq32MH6bOuKQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pedro Amaro\\source\\repos\\MoneyPlus\\MoneyPlus\\MoneyPlus\\MoneyPlus.csproj",
   "expectedPackageFiles": [
@@ -193,7 +193,8 @@
     "C:\\Users\\Pedro Amaro\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Pedro Amaro\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Pedro Amaro\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\Pedro Amaro\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\Pedro Amaro\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\Pedro Amaro\\.nuget\\packages\\yamldotnet\\12.2.1\\yamldotnet.12.2.1.nupkg.sha512"
   ],
   "logs": []
 }

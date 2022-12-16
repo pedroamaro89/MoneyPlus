@@ -11,14 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using static System.Formats.Asn1.AsnWriter;
 
-namespace MoneyPlus.Services;
-
-/* Steps:
- * 1. Criar uma classe que deriva de BackgroundService
- * 2. Registar o Hosted service no Program.cs
- * 3. Garantir que o serviço corre durante todo o tempo de vida da app - while (...)
- * 4. Garantir que uma eventual exceção não termine o serviço
- */
+namespace MoneyPlus.Services.BackGroundServices;
 
 public class EmailBackgroundService : BackgroundService
 {
@@ -27,8 +20,8 @@ public class EmailBackgroundService : BackgroundService
 
     // Configurações
     TimeSpan IntervalBetweenJobs = TimeSpan.FromHours(24);
-	//TimeSpan IntervalBetweenJobs = TimeSpan.FromSeconds(30);
-	public IServiceProvider _serviceProvider { get; }
+    //TimeSpan IntervalBetweenJobs = TimeSpan.FromSeconds(30);
+    public IServiceProvider _serviceProvider { get; }
 
     public EmailBackgroundService(IServiceProvider serviceProvider)
     {
@@ -43,8 +36,6 @@ public class EmailBackgroundService : BackgroundService
         while (!ct.IsCancellationRequested)
         {
             await DoWorkAsync();
-
-           // Debug.WriteLine(ctx.Cities.First().Name);
 
             await Task.Delay(IntervalBetweenJobs);
         }
@@ -65,10 +56,10 @@ public class EmailBackgroundService : BackgroundService
 
 
     private async Task SendEmailAsync() // não consegui usar o Smtp Client da google, fiz pelo método de guardar os registos na BD como se fossem emails enviados. A cada 24h o servidor cria um registo na tabela EmailLogs.
-	{
-		using var scope = _serviceProvider.CreateScope();
-		var context = scope.ServiceProvider.GetRequiredService<MoneyPlusContext>();
-		var users = context.Users.ToList();
+    {
+        using var scope = _serviceProvider.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<MoneyPlusContext>();
+        var users = context.Users.ToList();
 
         foreach (var item in users)
         {
@@ -82,12 +73,12 @@ public class EmailBackgroundService : BackgroundService
             EmailLog.EmailTo = item.Email;
             EmailLog.Date = DateTime.Now;
 
-			context.EmailLogs.Add(EmailLog);
-			await context.SaveChangesAsync();
-		}
+            context.EmailLogs.Add(EmailLog);
+            await context.SaveChangesAsync();
+        }
 
 
-		/* using (MailMessage mm = new MailMessage())
+        /* using (MailMessage mm = new MailMessage())
 		 {
 
 			  if (fuAttachment.HasFile)
@@ -96,7 +87,7 @@ public class EmailBackgroundService : BackgroundService
 				  mm.Attachments.Add(new Attachment(fuAttachment.PostedFile.InputStream, FileName));
 			  }*/
 
-		/*mm.From = new MailAddress("pmbamaro@gmail.com");
+        /*mm.From = new MailAddress("pmbamaro@gmail.com");
 		mm.To.Add("pmb_amaro@hotmail.com");
 		mm.Subject = "Hello World";
 		mm.Body = "<h1>Hello</h1>" +
@@ -120,5 +111,5 @@ public class EmailBackgroundService : BackgroundService
 		}
 		// ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Email sent.');", true);
 	}*/
-	}
+    }
 }

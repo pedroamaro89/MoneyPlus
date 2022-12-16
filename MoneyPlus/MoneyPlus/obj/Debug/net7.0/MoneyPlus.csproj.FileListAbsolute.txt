@@ -278,8 +278,11 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\obj\Debug\net7.0\refint\Mo
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\obj\Debug\net7.0\MoneyPlus.pdb
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\obj\Debug\net7.0\MoneyPlus.genruntimeconfig.cache
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\obj\Debug\net7.0\ref\MoneyPlus.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\MoneyPlus.csproj.AssemblyReference.cache
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\MoneyPlus.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\MoneyPlus.AssemblyInfoInputs.cache
@@ -376,6 +379,7 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\System.Security.Permissions.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\YamlDotNet.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -395,6 +399,7 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -432,9 +437,7 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
@@ -448,7 +451,6 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
@@ -532,13 +534,13 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
@@ -547,7 +549,6 @@ C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MoneyPlus.props
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.MoneyPlus.props
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Pedro Amaro\source\repos\MoneyPlus\MoneyPlus\MoneyPlus\obj\Debug\net7.0\scopedcss\bundle\MoneyPlus.styles.css
