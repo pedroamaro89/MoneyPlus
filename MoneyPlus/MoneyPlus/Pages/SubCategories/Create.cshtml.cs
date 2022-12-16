@@ -23,13 +23,19 @@ namespace MoneyPlus.Pages.SubCategories
 
         public IActionResult OnGet()
         {
-        ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
+          
+            var categoryId = int.Parse(Request.Query["id"]);
+
+            Category = _context.Category.Where(r => r.ID == categoryId).FirstOrDefault();
+
             return Page();
+
+
         }
 
         [BindProperty]
         public SubCategory SubCategory { get; set; } = default!;
-        public Category Category { get; set; } = default!;
+        public Category Category { get; set; }
 
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD

@@ -38,8 +38,10 @@ namespace MoneyPlus.Pages.Transactions
             Transaction = transaction;
             oldAmount = Transaction.Amount;
             ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
-            ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "ID");
-            return Page();
+            ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "Name");
+			ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
+
+			return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.

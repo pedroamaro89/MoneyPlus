@@ -45,9 +45,14 @@ namespace MoneyPlus.Pages.Reports
 		public int PrevYear { get; set; }
 		public int NextYear { get; set; }
 
+		//public double allYearSum { get; set; }	
+
 		public List<KeyValuePair<int, string>> catsAndSubcats { get; set; }
 
         public Dictionary<string, double> total { get; set; }
+		public Dictionary<string, double> totalcat { get; set; }
+		public Dictionary<string, double> totalsubcat { get; set; }
+
 
 		public async Task OnGetAsync()
 		{
@@ -73,8 +78,11 @@ namespace MoneyPlus.Pages.Reports
 				completeReport = await _transactionRepository.GetCompleteReport(userId, CurrentYear);
 			}
 
-			total = completeReport.GroupBy(z => z.Month).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount));
+			catsAndSubcats = new List<KeyValuePair<int, string>>();
 
+			total = completeReport.GroupBy(z => z.Month).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount));
+			totalcat = completeReport.GroupBy(z => z.Category).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount));
+			totalsubcat = completeReport.GroupBy(z => z.SubCategory).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount));
 			var distMonths = completeReport.DistinctBy(y => y.Month).ToList();
 
 			var distYears = completeReport.DistinctBy(y => y.Year).ToList();
@@ -127,7 +135,6 @@ namespace MoneyPlus.Pages.Reports
 				subcatgs.Add(item.SubCategory);
 			}
 
-            catsAndSubcats = new List<KeyValuePair<int, string>>();
 
             for (int i = 0; i < catgs.Count; i++)
 			{
@@ -142,7 +149,8 @@ namespace MoneyPlus.Pages.Reports
 				}
 			}
 
-		
+
+
 
 
 		}

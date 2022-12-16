@@ -23,13 +23,23 @@ namespace MoneyPlus.Pages.Transfers
         public IActionResult OnGet()
         {
             // ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
-            var originWalletID = int.Parse(Request.Query["id"]);
+
+            int originWalletID = 0;
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            OriginWallet = _context.Wallet.Where(r => r.ID == originWalletID).FirstOrDefault();
 
-            ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.ID != originWalletID && x.UserId==userId), "ID", "Name");
-
-
+            var paramWallet = Request.Query["id"];
+            if (paramWallet.Count != 0)
+            {
+                originWalletID = int.Parse(paramWallet);
+                OriginWallet = _context.Wallet.Where(r => r.ID == originWalletID).FirstOrDefault();
+                ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.ID != originWalletID && x.UserId == userId), "ID", "Name");
+            }
+            else
+            {
+                ViewData["OriginWalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.UserId == userId), "ID", "Name");
+                ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>().Where(x =>x.UserId == userId), "ID", "Name");
+            }
 
             //  ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
@@ -45,17 +55,27 @@ namespace MoneyPlus.Pages.Transfers
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            var originWalletID = int.Parse(Request.Query["id"]);
-            OriginWallet = _context.Wallet.Where(r => r.ID == originWalletID).FirstOrDefault();
+            int originWalletID = 0;
+            var paramWallet = Request.Query["id"];
+
+            if (paramWallet.Count != 0)
+            {
+                originWalletID = int.Parse(paramWallet);
+                OriginWallet = _context.Wallet.Where(r => r.ID == originWalletID).FirstOrDefault();
+            } else
+            {
+                OriginWallet = _context.Wallet.Where(r => r.ID == Transfer.OriginWalletID).FirstOrDefault();
+            }
+
             DestinationWallet = _context.Wallet.Where(r => r.ID == Transfer.DestinationWalletID).FirstOrDefault();
 
 
             OriginWallet.Balance = OriginWallet.Balance - Transfer.Amount;
             DestinationWallet.Balance = DestinationWallet.Balance + Transfer.Amount;
-           /* if (!ModelState.IsValid || _context.Transfer == null || Transfer == null)
-            {
-                return Page();
-            }*/
+            /* if (!ModelState.IsValid || _context.Transfer == null || Transfer == null)
+             {
+                 return Page();
+             }*/
 
             Transfer.OriginWallet = OriginWallet;
             Transfer.DestinationWallet = DestinationWallet;

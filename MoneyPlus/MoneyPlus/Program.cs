@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Areas.Identity.Data;
 using MoneyPlus.Data;
 using MoneyPlus.Repositories;
+using MoneyPlus.Services;
 using MoneyPlus.Services.Interfaces;
 using MoneyPlus.Services.Models;
 
@@ -27,7 +28,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IWallet, Wallet>();
 builder.Services.AddScoped<TransactionRepository>();
-
+builder.Services.AddHostedService<EmailBackgroundService>();
 
 
 

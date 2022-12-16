@@ -30,6 +30,7 @@ namespace MoneyPlus.Pages.Transactions
                 Transaction = await _context.Transaction
                 .Include(t => t.Payee)
                 .Include(t => t.Category)
+                .Include(t => t.SubCategory)
                 .Include(t => t.Wallet).Where(t => t.Wallet.UserId == userId).ToListAsync();
             }
         }

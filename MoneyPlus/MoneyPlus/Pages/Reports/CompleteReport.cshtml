@@ -13,7 +13,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Category</th>
+			<th>@Html.DisplayFor(model => model.CurrentYear)</th>
 
 			@foreach(var item in Model.months)
 		{
@@ -21,7 +21,7 @@
 					@Html.DisplayFor(modelItem => item.Value)
 			</th>
 		}
-			
+		<th>Total</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -31,6 +31,8 @@
 
 		@foreach (var item in Model.catsAndSubcats)
 		{
+			double totalSum = 0;
+				
 			<tr style="font-weight:@(item.Key==0 ? "bold" : "" )">
 
 				<td>
@@ -40,6 +42,7 @@
 				@foreach (var item2 in Model.months)
 				{
 					double sum = 0;
+					
 
 					<td>
 						
@@ -53,16 +56,42 @@
 							}
 							else if (item.Key == 1)
 							{
-								@(item3.SubCategory == item.Value && int.Parse(item3.Month) == item2.Key ? @Html.DisplayFor(modelItem => item3.Amount) : "")
+								@if (item3.SubCategory == item.Value && int.Parse(item3.Month) == item2.Key)
+								{ // se for categoria soma o valor das subCategorias
+									@Html.DisplayFor(modelItem => item3.Amount)
+									totalSum += item3.Amount;
+								} 
+
+				//@(item3.SubCategory == item.Value && int.Parse(item3.Month) == item2.Key ? @Html.DisplayFor(modelItem => item3.Amount) : "")
+								//totalSum += item3.Amount;
 							}
 
-				}
+						}
+
+						
+
+						@*
+
+						@foreach (var item4 in Model.totalcat)
+							@if (item4.Key == item.Key.ToString())
+							{
+								@Html.DisplayFor(modelItem => item4.Value)
+								}
+						@foreach (var item5 in Model.totalsubcat)
+							@if (item5.Key == item.Key.ToString())
+							{
+								@Html.DisplayFor(modelItem => item5.Value)
+							}
+							*@
 				@if (item.Key == 0) //se for categoria apresenta no fim do for each o valor do sum final
 						{
 							@Html.DisplayTextFor(m => sum)
+							totalSum += sum;
 						}
 					</td>
+
 				}
+				<td> @Html.DisplayTextFor(m => totalSum) </td>
 			</tr>
 		}
 	
@@ -70,22 +99,27 @@
 	<tfoot>
 		<tr>
 			<th>Total</th>
-
+			@{
+				double allYearSum = 0;
+			}
 			@foreach (var item in Model.months)
 			{
+				//allYearSum = 0;
+
 				<th>
-				@foreach (var item2 in Model.total)
-				{
-				
-					@if (int.Parse(item2.Key) == item.Key)
+					@foreach (var item2 in Model.total)
 					{
-						@Html.DisplayFor(modelItem => item2.Value)
-						} 
-				
-				}
+
+						@if (int.Parse(item2.Key) == item.Key)
+						{
+							@Html.DisplayFor(modelItem => item2.Value)
+							allYearSum += item2.Value;
+						}
+
+					}	
 				</th>
 			}
-
+			<th> @Html.DisplayTextFor(m => allYearSum) </th>
 		</tr>
 
 	</tfoot>

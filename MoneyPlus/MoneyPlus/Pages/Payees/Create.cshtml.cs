@@ -42,7 +42,6 @@ namespace MoneyPlus.Pages.Payees
             _context.Payee.Add(Payee);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
 			return RedirectToPage("../Payees/Details", new { id = Payee.ID });
 
 		}

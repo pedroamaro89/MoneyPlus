@@ -48,12 +48,7 @@ namespace MoneyPlus.Pages.Reports
 				yearExpenses = await _transactionRepository.GetTransactionByYearSummary(userId);
 			}
 
-			/*
-			groupedExpenses = yearExpenses.GroupBy(t => new { t.Category, t.Year })
-            .Select(grp => new TransactionRepository.ExpensesByYearModel { Category = grp.First().Category, Year =grp.First().Year, Amount = grp.Sum(t => t.Amount) })
-            .ToList();*/
-
-			//var total = yearExpenses.GroupBy(t => t.Year).Select(grp => new { Year = grp.First().Year, Sum = grp.Sum(t => t.Amount) }).OrderBy(t=> t.Year).ToList();
+			
 
 			total = yearExpenses.GroupBy(z => z.Year).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount)); 
 

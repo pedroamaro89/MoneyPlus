@@ -57,5 +57,6 @@ namespace MoneyPlus.Pages.Wallets
 
             return RedirectToPage("./Index");
         }
-    }
+
+	}
 }

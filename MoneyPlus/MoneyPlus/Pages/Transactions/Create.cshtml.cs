@@ -35,12 +35,28 @@ namespace MoneyPlus.Pages.Transactions
             ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
             ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "ID", "Name");
             ViewData["AssetId"] = new SelectList(_context.Asset.Where(x => x.UserId == userId), "ID", "Name");
-            var walletID = int.Parse(Request.Query["id"]);
-            Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
+            //var walletID = int.Parse(Request.Query["id"]);
+            int walletID = 0, typeId = 0;
 
-            var typeId = int.Parse(Request.Query["type"]);
+            var paramWallet = Request.Query["id"];
+            if (paramWallet.Count != 0)
+            {
+                walletID = int.Parse(paramWallet);
 
-            Type = Transaction.GetType(typeId);
+                Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
+            }
+
+            var paramType = Request.Query["type"];
+            if (paramType.Count != 0)
+            {
+                typeId = int.Parse(paramType);
+
+                Type = Transaction.GetType(typeId);
+            }
+
+           
+
+            
 
             return Page();
         }
@@ -89,5 +105,8 @@ namespace MoneyPlus.Pages.Transactions
             return RedirectToPage("../Transactions/Details", new { id = Transaction.ID });
 
         }
-    }
+
+
+	
+	}
 }

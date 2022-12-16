@@ -7,6 +7,72 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MoneyPlus.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .mynav_navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .mynav_navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+        .mynav_dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .mynav_dropdown .mynav_dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .mynav_navbar a:hover, .mynav_dropdown:hover .mynav_dropbtn {
+                background-color: ;
+            }
+
+        .mynav_dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .mynav_dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .mynav_dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .mynav_dropdown:hover .mynav_dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -36,16 +102,7 @@
                               <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Transfers/Index">Transfers</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/CompleteReport">Complete Reports</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">Monthly Expenses</a>
-                            </li>
-
-                              <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ExpensesByYear">Expenses by Year</a>
-                            </li>
+                 
 
                             <asp:dropdownlist runat="server" id="ddlReports">
                                 <asp:listitem text="Monthly Expenses" value="1"></asp:listitem>
@@ -64,15 +121,47 @@
 
                             @if (User.IsInRole("Admin"))
                             {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
-                            </li>
+                                <div class="mynav_navbar">
+
+                                    <div class="mynav_dropdown">
+                                        <button class="mynav_dropbtn">
+                                            Admin Area
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <div class="mynav_dropdown-content">
+                                            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                           
+
                             }
+                                <div class="mynav_navbar">
+                  
+                    <div class="mynav_dropdown">
+                        <button class="mynav_dropbtn">
+                            Reports
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="mynav_dropdown-content">
+                                <a asp-area="" asp-page="/Reports/CompleteReport">Complete Reports</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">Monthly Expenses</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ExpensesByYear">Expenses by Year</a>
+                        </div>
+                    </div>
+                </div>
+                     
 
                         }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
+
+            
+
+
             </div>
         </nav>
     </header>
