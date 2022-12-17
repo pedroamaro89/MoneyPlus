@@ -28,6 +28,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IWallet, Wallet>();
 builder.Services.AddScoped<TransactionRepository>();
+builder.Services.AddScoped<UserRepository>();
 builder.Services.AddHostedService<EmailBackgroundService>();
 builder.Services.AddHostedService<ImportCategoriesBackgroundService>();
 

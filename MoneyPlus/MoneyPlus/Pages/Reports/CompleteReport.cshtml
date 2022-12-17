@@ -61,28 +61,11 @@
 									@Html.DisplayFor(modelItem => item3.Amount)
 									totalSum += item3.Amount;
 								} 
-
-				//@(item3.SubCategory == item.Value && int.Parse(item3.Month) == item2.Key ? @Html.DisplayFor(modelItem => item3.Amount) : "")
-								//totalSum += item3.Amount;
 							}
 
 						}
 
-						
-
-						@*
-
-						@foreach (var item4 in Model.totalcat)
-							@if (item4.Key == item.Key.ToString())
-							{
-								@Html.DisplayFor(modelItem => item4.Value)
-								}
-						@foreach (var item5 in Model.totalsubcat)
-							@if (item5.Key == item.Key.ToString())
-							{
-								@Html.DisplayFor(modelItem => item5.Value)
-							}
-							*@
+					
 				@if (item.Key == 0) //se for categoria apresenta no fim do for each o valor do sum final
 						{
 							@Html.DisplayTextFor(m => sum)
@@ -124,8 +107,6 @@
 
 	</tfoot>
 </table>
-
-
 
 
 

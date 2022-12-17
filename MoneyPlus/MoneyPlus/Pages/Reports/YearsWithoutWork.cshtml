@@ -1,0 +1,96 @@
+﻿@page
+@model MoneyPlus.Pages.Reports.YearsWithoutWorkModel
+
+@{
+	ViewData["Title"] = "Years Without Working";
+}
+
+<h1>Years Without Working</h1>
+
+
+
+<form method="get">
+	<div class="form-group">
+		<label class="control-label">Inflation Rate</label>
+		<input asp-for="@Model.Inflation" class="form-control" />
+		<span asp-validation-for="@Model.Inflation" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label class="control-label">Return on Investment</label>
+		<input asp-for="@Model.ROI" class="form-control" />
+		<span asp-validation-for="@Model.ROI" class="text-danger"></span>
+	</div>
+	<input type="submit" value="Filter" asp-page-handler="Filter" />
+	<br>
+	<br>
+	</a>
+</form>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Inflation
+			</th>
+			<th>
+				Return On Investment
+			</th>
+			<th>
+				Last Year Total Expenses
+			</th>
+			<th>
+				Cost of Living
+			</th>
+			<th>
+				Todays Balance
+			</th>
+		
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+    <tbody>
+            
+            <tr>
+                <td>
+                        @Html.DisplayFor(modelItem => Model.Inflation)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => Model.ROI)
+                </td>
+			<td>
+					@Html.DisplayFor(modelItem => Model.LastYearExpenses)
+			</td>
+			<td>
+					@Html.DisplayFor(modelItem => Model.CostOfLiving)
+			</td>
+			     <td>
+                        @Html.DisplayFor(modelItem => Model.TotalBalance)
+                </td>
+            </tr>
+            
+    </tbody>
+
+
+	@if(Model.YearsWithoutWorking >0)
+	{
+	<td>
+		<br>
+		<br>
+			You can stay without working for @Html.DisplayFor(modelItem => Model.YearsWithoutWorking) years.
+	</td>
+		}
+		else
+		{
+		<td>
+			<br>
+			<br>
+			I'm sorry, but you need to keep working.
+		</td>
+		}
+
+</table>
+
+

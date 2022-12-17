@@ -10,17 +10,8 @@ using static MoneyPlus.Services.BackGroundServices.ImportCategoriesBackgroundSer
 
 namespace MoneyPlus.Services.BackGroundServices;
 
-/* Steps:
- * 1. Criar uma classe que deriva de BackgroundService
- * 2. Registar o Hosted service no Program.cs
- * 3. Garantir que o serviço corre durante todo o tempo de vida da app - while (...)
- * 4. Garantir que uma eventual exceção não termine o serviço
- */
-
 public class ImportCategoriesBackgroundService : BackgroundService
 {
-	//static int count = 5;
-	//private readonly MoneyPlusContext ctx;
 
 	// Configurações
 	TimeSpan IntervalBetweenJobs = TimeSpan.FromMinutes(5);
@@ -51,7 +42,6 @@ public class ImportCategoriesBackgroundService : BackgroundService
 	{
 		try
 		{
-			// Código que deve ser executado   
 			string fileLocation = "c:\\temp\\categories.yaml";
 
 			bool fileExists = File.Exists("c:\\temp\\categories.yaml");

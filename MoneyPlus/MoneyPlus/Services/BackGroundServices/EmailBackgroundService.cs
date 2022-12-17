@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
+using MoneyPlus.Repositories;
 using MoneyPlus.Services.Models;
 using System.Diagnostics;
 using System.Net;
@@ -45,8 +46,8 @@ public class EmailBackgroundService : BackgroundService
     {
         try
         {
-            // Código que deve ser executado   
-            SendEmailAsync();
+			// Código que deve ser executado   
+			SendEmailAsync();
         }
         catch (Exception e)
         {
@@ -59,13 +60,14 @@ public class EmailBackgroundService : BackgroundService
     {
         using var scope = _serviceProvider.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<MoneyPlusContext>();
-        var users = context.Users.ToList();
+		var userRepository = scope.ServiceProvider.GetRequiredService<UserRepository>();
+		var users = context.Users.ToList();
 
         foreach (var item in users)
         {
-            var totalBalance = context.Wallet.Where(t => t.UserId == item.Id).Sum(t => t.Balance);
+			var totalBalance = userRepository.GetTotalBalanceByUser(item.Id);
 
-            var EmailLog = new EmailLogs();
+			var EmailLog = new EmailLogs();
 
             EmailLog.Subject = "Daily Balance Report";
             EmailLog.Body = $"Hi, your current balance is {totalBalance}€";
