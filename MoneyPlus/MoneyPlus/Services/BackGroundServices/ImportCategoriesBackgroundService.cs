@@ -58,7 +58,7 @@ public class ImportCategoriesBackgroundService : BackgroundService
 		}
 		catch (Exception e)
 		{
-			Debug.WriteLine($"BUM at: {DateTime.UtcNow}");
+			Logger.WriteLog("Error importing yaml");
 		}
 	}
 

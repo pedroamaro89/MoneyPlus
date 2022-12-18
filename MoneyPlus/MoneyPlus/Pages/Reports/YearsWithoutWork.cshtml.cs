@@ -85,7 +85,7 @@ namespace MoneyPlus.Pages.Reports
 
 			AvailableBalance = TotalBalance;
 
-			while (AvailableBalance >= 0)
+			while (AvailableBalance > 0)
 			{
 				AvailableBalance = AvailableBalance - CostOfLiving;
 				AvailableBalance = (AvailableBalance * ROI/100) + AvailableBalance;

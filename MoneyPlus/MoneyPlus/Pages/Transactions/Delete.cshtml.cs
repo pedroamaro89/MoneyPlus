@@ -47,11 +47,6 @@ namespace MoneyPlus.Pages.Transactions
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            
-
-
-            //Wallet.Balance = Wallet.Balance - Transaction.Amount;
-
             if (id == null || _context.Transaction == null)
             {
                 return NotFound();

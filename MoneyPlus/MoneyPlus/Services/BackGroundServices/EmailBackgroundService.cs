@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
@@ -24,7 +25,7 @@ public class EmailBackgroundService : BackgroundService
     //TimeSpan IntervalBetweenJobs = TimeSpan.FromSeconds(30);
     public IServiceProvider _serviceProvider { get; }
 
-    public EmailBackgroundService(IServiceProvider serviceProvider)
+	public EmailBackgroundService(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
@@ -51,8 +52,8 @@ public class EmailBackgroundService : BackgroundService
         }
         catch (Exception e)
         {
-            Debug.WriteLine($"BUM at: {DateTime.UtcNow}");
-        }
+			Logger.WriteLog("Error sending email");
+		}
     }
 
 
@@ -77,7 +78,8 @@ public class EmailBackgroundService : BackgroundService
 
             context.EmailLogs.Add(EmailLog);
             await context.SaveChangesAsync();
-        }
+            Logger.WriteLog($"Email sent to: {EmailLog.EmailTo}");
+		}
 
 
         /* using (MailMessage mm = new MailMessage())

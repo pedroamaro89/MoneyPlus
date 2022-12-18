@@ -72,6 +72,9 @@
         .mynav_dropdown:hover .mynav_dropdown-content {
             display: block;
         }
+        .link-bar{
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -86,21 +89,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-
-
-            
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Wallets/Index">My Wallets</a>
+                                <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Wallets/Index">My Wallets</a>
                             </li>
                               <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Transactions/Index">Transactions</a>
+                                <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Transactions/Index">Transactions</a>
                             </li>
                               <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Transfers/Index">Transfers</a>
+                                <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Transfers/Index">Transfers</a>
                             </li>
                  
 
@@ -113,10 +113,10 @@
                             </asp:dropdownlist>
 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Payees/Index">Payees</a>
+                                <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Payees/Index">Payees</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Assets/Index">Assets</a>
+                                <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Assets/Index">Assets</a>
                             </li>
 
                             @if (User.IsInRole("Admin"))
@@ -146,7 +146,7 @@
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="mynav_dropdown-content">
-                                <a asp-area="" asp-page="/Reports/CompleteReport">Complete Reports</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/CompleteReport">Complete Reports</a>
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">Monthly Expenses</a>
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ExpensesByYear">Expenses by Year</a>
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/YearsWithoutWork">Calculate Years Without Work</a>
