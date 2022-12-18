@@ -27,6 +27,11 @@
                 <span asp-validation-for="Transaction.CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Transaction.SubCategoryID" class="control-label"></label>
+                <select asp-for="Transaction.SubCategoryID" class="form-control" asp-items="ViewBag.SubCategoryID"></select>
+                <span asp-validation-for="Transaction.SubCategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Transaction.PayeeId" class="control-label"></label>
                 <select asp-for="Transaction.PayeeId" class="form-control" asp-items="ViewBag.PayeeId"></select>
                 <span asp-validation-for="Transaction.PayeeId" class="text-danger"></span>

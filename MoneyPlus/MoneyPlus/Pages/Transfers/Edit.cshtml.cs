@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,27 +30,20 @@ namespace MoneyPlus.Pages.Transfers
             {
                 return NotFound();
             }
-
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var transfer =  await _context.Transfer.FirstOrDefaultAsync(m => m.ID == id);
             if (transfer == null)
             {
                 return NotFound();
             }
             Transfer = transfer;
-           ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
-           ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
+           ViewData["DestinationWalletID"] = new SelectList(_context.Wallet.Where(x => x.UserId == userId), "ID", "Name");
+           ViewData["OriginWalletID"] = new SelectList(_context.Wallet.Where(x => x.UserId == userId), "ID", "Name");
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             _context.Attach(Transfer).State = EntityState.Modified;
 
             try

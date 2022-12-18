@@ -71,15 +71,6 @@
 </table>
 
 
-@*
-    <div class="form-actions no-color">
-        <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
-        </p>
-    </div>*@
-	
 <form method="get">
 	<div class="form-group">
 		<label class="control-label">Category</label>
@@ -101,8 +92,6 @@
 	</div>
 	<input type="hidden" asp-for="@Model.CurrentMonth" />
 	<input type="submit" value="Filter" asp-page-handler="Filter"/>
-	@*<a asp-page-handler="Filter" class="btn btn-primary" asp-route-cat="@Model.CategoryId" type="button" style="border-color: inherit">*@
-	
 </a>
 </form>
 

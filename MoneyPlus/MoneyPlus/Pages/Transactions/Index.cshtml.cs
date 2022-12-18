@@ -21,7 +21,6 @@ namespace MoneyPlus.Pages.Transactions
         }
 
         public IList<Transaction> Transaction { get;set; } = default!;
-
         public async Task OnGetAsync()
         {
             if (_context.Transaction != null)

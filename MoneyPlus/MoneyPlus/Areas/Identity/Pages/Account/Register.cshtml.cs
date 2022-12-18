@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using MoneyPlus.Areas.Identity.Data;
+using MoneyPlus.Services;
 
 namespace MoneyPlus.Areas.Identity.Pages.Account
 {
@@ -125,7 +126,7 @@ namespace MoneyPlus.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    Logger.WriteLog("User created a new account with password");
                     var defaultrole = _roleManager.FindByNameAsync("Default").Result;
 
                     if (defaultrole != null)

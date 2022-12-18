@@ -63,7 +63,7 @@
             @Html.DisplayNameFor(model => model.Transaction.Type)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Transaction.Type)
+            @(Model.Type == 0 ? @"Add Money" : "Add Expense")
         </dd>
     </dl>
 </div>

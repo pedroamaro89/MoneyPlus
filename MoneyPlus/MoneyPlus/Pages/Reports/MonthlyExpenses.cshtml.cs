@@ -13,7 +13,6 @@ using MoneyPlus.Data;
 using MoneyPlus.Repositories;
 using MoneyPlus.Services.Models;
 using static MoneyPlus.Repositories.TransactionRepository;
-//using Dapper;
 
 namespace MoneyPlus.Pages.Reports
 {
@@ -27,8 +26,6 @@ namespace MoneyPlus.Pages.Reports
 			_context = context;
 			_transactionRepository = transactionRepository;
 		}
-
-		//public IList<Transaction> Transaction { get;set; } = default!;
 		public List<TransactionRepository.MonthlyExpensesModel> monthExpenses { get; set; }
 
 		public int CurrentMonth { get; set; }
@@ -40,15 +37,6 @@ namespace MoneyPlus.Pages.Reports
 
 		public int AssetId { get; set; }
 		public int PayeeId { get; set; }
-
-
-		/*public IActionResult OnGetFilter()
-        {
-            var catId = CategoryId;
-			var paramMonth = Request.Query["cat"];
-
-			return Page();
-        }*/
 
 		public async Task OnGetAsync()
 		{
@@ -96,18 +84,9 @@ namespace MoneyPlus.Pages.Reports
 					payee = int.Parse(paramPayee);
 					PayeeId = payee;
 				}
-
-				/*if (paramCategory.Count != 0)
-				{*/
-				monthExpenses = await _transactionRepository.GetTransactionSummary(userId, CurrentMonth, cat, asset, payee);
-				
+				monthExpenses = await _transactionRepository.GetTransactionSummary(userId, CurrentMonth, cat, asset, payee);	
 			}
 		}
-
-	
 	}
-
-
-
 }
 

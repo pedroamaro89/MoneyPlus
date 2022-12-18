@@ -101,7 +101,6 @@
                 </td>
                 <td>
                     @(item.Type == 0 ? @"Add Money" : "Add Expense") 
-                    @*  @Html.DisplayFor(modelItem => item.Type) *@
                 </td>
                 <td>
                     <a asp-page="../Transactions/Edit" asp-route-id="@item.ID">Edit</a> |

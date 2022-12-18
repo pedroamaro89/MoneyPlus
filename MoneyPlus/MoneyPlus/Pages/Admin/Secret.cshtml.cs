@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using MoneyPlus.Areas.Identity.Data;
+using MoneyPlus.Services;
 
 namespace MoneyPlus.Pages.Admin
 {
@@ -117,8 +118,8 @@ namespace MoneyPlus.Pages.Admin
 			}
 			else
 			{
+                Logger.WriteLog("An error occurred while processing your request. Wrong Password");
 				return Redirect("./error");
-
 			}
 		}
 

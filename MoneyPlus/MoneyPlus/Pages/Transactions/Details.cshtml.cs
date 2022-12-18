@@ -20,6 +20,8 @@ namespace MoneyPlus.Pages.Transactions
         }
 
       public Transaction Transaction { get; set; } = default!; 
+        
+        public int Type { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -41,12 +43,8 @@ namespace MoneyPlus.Pages.Transactions
                 Transaction.Payee = _context.Payee.Where(r => r.ID == Transaction.PayeeId).FirstOrDefault();
                 Transaction.SubCategory = _context.SubCategory.Where(r => r.ID == Transaction.SubCategoryID).FirstOrDefault();
                 Transaction.Asset = _context.Asset.Where(r => r.ID == Transaction.AssetId).FirstOrDefault();
+                Type = Transaction.Type;
             }
-
-
-
-
-
             return Page();
         }
     }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MoneyPlus.Data;
+using MoneyPlus.Services;
 using MoneyPlus.Services.Models;
 
 namespace MoneyPlus.Pages.Categories
@@ -65,6 +66,7 @@ namespace MoneyPlus.Pages.Categories
                 }
                 else
                 {
+                    Logger.WriteLog("Error editing Categories");
                     throw;
                 }
             }

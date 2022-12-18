@@ -15,7 +15,6 @@ using MoneyPlus.Data;
 using MoneyPlus.Repositories;
 using MoneyPlus.Services.Models;
 using static MoneyPlus.Repositories.TransactionRepository;
-//using Dapper;
 
 namespace MoneyPlus.Pages.Reports
 {
@@ -29,8 +28,6 @@ namespace MoneyPlus.Pages.Reports
 			_context = context;
 			_transactionRepository = transactionRepository;
 		}
-
-		//public IList<Transaction> Transaction { get;set; } = default!;
 		public List<TransactionRepository.ExpensesByYearModel> yearExpenses { get; set; }
 
 		public List<string> years { get; set; }
@@ -47,8 +44,6 @@ namespace MoneyPlus.Pages.Reports
 			{
 				yearExpenses = await _transactionRepository.GetTransactionByYearSummary(userId);
 			}
-
-			
 
 			total = yearExpenses.GroupBy(z => z.Year).ToDictionary(z => z.Key, z => z.Sum(f => f.Amount)); 
 
@@ -70,11 +65,6 @@ namespace MoneyPlus.Pages.Reports
 				catgs.Add(item.Category);
 			}
 		}
-
 	}
-
-
-
-
 }
 

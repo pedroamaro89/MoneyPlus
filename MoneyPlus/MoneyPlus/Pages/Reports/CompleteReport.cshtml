@@ -42,10 +42,7 @@
 				@foreach (var item2 in Model.months)
 				{
 					double sum = 0;
-					
-
 					<td>
-						
 						@foreach (var item3 in Model.completeReport)
 						{
 							@if (item.Key == 0) // 0 -- categories | 1 -- subCategories 
@@ -62,10 +59,7 @@
 									totalSum += item3.Amount;
 								} 
 							}
-
-						}
-
-					
+						}		
 				@if (item.Key == 0) //se for categoria apresenta no fim do for each o valor do sum final
 						{
 							@Html.DisplayTextFor(m => sum)
@@ -87,18 +81,14 @@
 			}
 			@foreach (var item in Model.months)
 			{
-				//allYearSum = 0;
-
 				<th>
 					@foreach (var item2 in Model.total)
 					{
-
 						@if (int.Parse(item2.Key) == item.Key)
 						{
 							@Html.DisplayFor(modelItem => item2.Value)
 							allYearSum += item2.Value;
 						}
-
 					}	
 				</th>
 			}
@@ -108,8 +98,5 @@
 	</tfoot>
 </table>
 
-
-
 <a asp-page="./CompleteReport" asp-route-CurrentYear="@Model.PrevYear">Previous Year</a>
-
 <a asp-page="./CompleteReport" asp-route-CurrentYear="@Model.NextYear">Next Year</a>

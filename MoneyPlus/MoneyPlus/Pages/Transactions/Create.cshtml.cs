@@ -27,15 +27,12 @@ namespace MoneyPlus.Pages.Transactions
 
         public IActionResult OnGet()
         {
-
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["PayeeId"] = new SelectList(_context.Payee.Where(x => x.UserId == userId), "ID", "Name");
-
-
             ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
             ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "ID", "Name");
             ViewData["AssetId"] = new SelectList(_context.Asset.Where(x => x.UserId == userId), "ID", "Name");
-            //var walletID = int.Parse(Request.Query["id"]);
+
             int walletID = 0, typeId = 0;
 
             var paramWallet = Request.Query["id"];
@@ -45,6 +42,10 @@ namespace MoneyPlus.Pages.Transactions
 
                 Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
             }
+            else
+            {
+                ViewData["WalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.UserId == userId), "ID", "Name");
+            }
 
             var paramType = Request.Query["type"];
             if (paramType.Count != 0)
@@ -53,11 +54,6 @@ namespace MoneyPlus.Pages.Transactions
 
                 Type = Transaction.GetType(typeId);
             }
-
-           
-
-            
-
             return Page();
         }
 
@@ -68,14 +64,8 @@ namespace MoneyPlus.Pages.Transactions
 
         public string Type { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            /*if (!ModelState.IsValid || _context.Transaction == null || Transaction == null)
-              {
-                  return Page();
-              }*/
-
             var walletID = int.Parse(Request.Query["id"]);
             Wallet = _context.Wallet.Where(r => r.ID == walletID).FirstOrDefault();
 
@@ -101,7 +91,6 @@ namespace MoneyPlus.Pages.Transactions
             _context.Transaction.Add(Transaction);
             await _context.SaveChangesAsync();
 
-            //return RedirectToPage("../Wallets/Details",Wallet.ID);
             return RedirectToPage("../Transactions/Details", new { id = Transaction.ID });
 
         }

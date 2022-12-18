@@ -13,30 +13,44 @@
 
 <br />
 
-<h5>@Html.DisplayFor(model => model.Type):</h5>
+<h5>@Html.DisplayFor(model => model.Type)</h5>
 <br />
 <div class="row">
     <div class="col-md-4">
-        
-             <dl class="row">
-            <h6>WALLET</h6>
+        @{
+            var paramWallet = Request.Query["id"];
+            if (paramWallet.Count != 0)
+            {
+                <dl class="row">
+                    <h6>WALLET</h6>
 
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Wallet.Name)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Wallet.Name)
-                </dd>
-                <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Wallet.Balance)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Wallet.Balance)
-                </dd>
-             </dl>   
-        
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Wallet.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Wallet.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Wallet.Balance)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Wallet.Balance)
+                    </dd>
+                </dl>
+            }
+        }
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @{
+                if (paramWallet.Count == 0)
+                {
+                        <div class="form-group">
+                        <label asp-for="Transaction.WalletId" class="control-label"></label>
+                        <select asp-for="Transaction.WalletId" class="form-control" asp-items="ViewBag.WalletID"></select>
+                    </div>
+                }
+            }
 
             <div class="form-group">
                 <label class="control-label">Category</label>

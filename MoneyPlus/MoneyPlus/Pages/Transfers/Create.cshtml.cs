@@ -22,8 +22,6 @@ namespace MoneyPlus.Pages.Transfers
 
         public IActionResult OnGet()
         {
-            // ViewData["DestinationWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
-
             int originWalletID = 0;
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -40,8 +38,6 @@ namespace MoneyPlus.Pages.Transfers
                 ViewData["OriginWalletID"] = new SelectList(_context.Set<Wallet>().Where(x => x.UserId == userId), "ID", "Name");
                 ViewData["DestinationWalletID"] = new SelectList(_context.Set<Wallet>().Where(x =>x.UserId == userId), "ID", "Name");
             }
-
-            //  ViewData["OriginWalletID"] = new SelectList(_context.Wallet, "ID", "ID");
             return Page();
         }
 
@@ -50,9 +46,6 @@ namespace MoneyPlus.Pages.Transfers
         public Wallet OriginWallet { get; set; }
         public Wallet DestinationWallet { get; set; }
 
-
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             int originWalletID = 0;
@@ -68,21 +61,13 @@ namespace MoneyPlus.Pages.Transfers
             }
 
             DestinationWallet = _context.Wallet.Where(r => r.ID == Transfer.DestinationWalletID).FirstOrDefault();
-
-
             OriginWallet.Balance = OriginWallet.Balance - Transfer.Amount;
             DestinationWallet.Balance = DestinationWallet.Balance + Transfer.Amount;
-            /* if (!ModelState.IsValid || _context.Transfer == null || Transfer == null)
-             {
-                 return Page();
-             }*/
 
             Transfer.OriginWallet = OriginWallet;
             Transfer.DestinationWallet = DestinationWallet;
             _context.Transfer.Add(Transfer);
             await _context.SaveChangesAsync();
-
-            //return RedirectToPage("./Index");
             return RedirectToPage("../Transfers/Details", new { id = Transfer.ID });
 
         }

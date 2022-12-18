@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -30,7 +31,9 @@ namespace MoneyPlus.Pages.Transactions
                 return NotFound();
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var transaction = await _context.Transaction.FirstOrDefaultAsync(m => m.ID == id);
+
             if (transaction == null)
             {
                 return NotFound();
@@ -38,16 +41,11 @@ namespace MoneyPlus.Pages.Transactions
             Transaction = transaction;
             oldAmount = Transaction.Amount;
             ViewData["PayeeId"] = new SelectList(_context.Payee, "ID", "Name");
-            ViewData["WalletId"] = new SelectList(_context.Wallet, "ID", "Name");
-			ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
-
-			return Page();
+            ViewData["WalletId"] = new SelectList(_context.Wallet.Where(x => x.UserId == userId), "ID", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Category, "ID", "Name");
+            ViewData["SubCategoryId"] = new SelectList(_context.SubCategory, "ID", "Name");
+            return Page();
         }
-
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-
-
 
         public Wallet Wallet { get; set; }
         public string Type { get; set; }
@@ -57,16 +55,8 @@ namespace MoneyPlus.Pages.Transactions
 
         public async Task<IActionResult> OnPostAsync()
         {
-            /*if (!ModelState.IsValid)
-            {
-                return Page();
-            } */
 
             Transaction.Wallet = _context.Wallet.Where(r => r.ID == Transaction.WalletId).FirstOrDefault();
-
-            //var oldTrans = _context.Transaction.Where(r => r.ID == Transaction.ID).FirstOrDefault();
-
-            
 
             var amountDiference = Transaction.Amount - oldAmount;
 
@@ -80,16 +70,10 @@ namespace MoneyPlus.Pages.Transactions
                 Transaction.Wallet.Balance = Transaction.Wallet.Balance - amountDiference;
             }
 
-            //Transaction.Wallet = Wallet;    
-
-            //_context.Transaction.Add(Transaction);
             _context.Attach(Transaction).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-
-           // return RedirectToPage("./Index");
             return RedirectToPage("../Transactions/Details", new { id = Transaction.ID });
-
         }
 
         private bool TransactionExists(int id)

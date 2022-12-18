@@ -31,11 +31,7 @@ namespace MoneyPlus.Pages.Reports
 			_transactionRepository = transactionRepository;
 		}
 
-
-		//public IList<Transaction> Transaction { get;set; } = default!;
 		public List<CompleteReportModel> completeReport { get; set; }
-
-		//public List<int> months { get; set; }
 		public Dictionary<int, string> months { get; set; }
 
 		public List<string> catgs { get; set; }
@@ -44,8 +40,6 @@ namespace MoneyPlus.Pages.Reports
 		public int CurrentYear { get; set; }
 		public int PrevYear { get; set; }
 		public int NextYear { get; set; }
-
-		//public double allYearSum { get; set; }	
 
 		public List<KeyValuePair<int, string>> catsAndSubcats { get; set; }
 
@@ -91,16 +85,6 @@ namespace MoneyPlus.Pages.Reports
 
 			var distSubCategories = completeReport.DistinctBy(y => y.SubCategory).ToList();
 
-
-			/*years = new List<string>();
-
-			foreach (var item in distYears)
-			{
-				years.Add(item.Year);
-			}*/
-
-
-			//months = new List<int>();
 			months = new Dictionary<int, string>
 			{
 				{ 1, "Jan" },
@@ -117,11 +101,6 @@ namespace MoneyPlus.Pages.Reports
 				{ 12, "Dec" }
 			};
 
-			/*foreach (var item in distMonths)
-			{
-				months.Add(int.Parse(item.Month));
-			}*/
-
 			catgs = new List<string>();
 
 			foreach (var item in distCategories)
@@ -135,29 +114,17 @@ namespace MoneyPlus.Pages.Reports
 				subcatgs.Add(item.SubCategory);
 			}
 
-
             for (int i = 0; i < catgs.Count; i++)
 			{
 				catsAndSubcats.Add(new KeyValuePair<int, string>(0, catgs[i]));
-
 
 				for (int j = 0; j < distSubCategories.Count; j++)
 				{
 					if (distSubCategories[j].Category == catgs[i])
 						catsAndSubcats.Add(new KeyValuePair<int, string>(1, subcatgs[j]));
-
 				}
 			}
-
-
-
-
-
 		}
-
-
-
-
 	}
 }
 

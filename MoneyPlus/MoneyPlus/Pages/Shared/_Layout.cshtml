@@ -88,9 +88,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="link-bar nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -133,10 +130,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                           
-
                             }
                                 <div class="mynav_navbar">
                   
@@ -149,20 +142,14 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/CompleteReport">Complete Reports</a>
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/MonthlyExpenses">Monthly Expenses</a>
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ExpensesByYear">Expenses by Year</a>
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/YearsWithoutWork">Calculate Years Without Work</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reports/YearsWithoutWork">Calculate Years Without Working</a>
                         </div>
                     </div>
                 </div>
-                     
-
                         }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
-
-            
-
-
             </div>
         </nav>
     </header>
@@ -174,7 +161,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - MoneyPlus - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - MoneyPlus 
         </div>
     </footer>
 

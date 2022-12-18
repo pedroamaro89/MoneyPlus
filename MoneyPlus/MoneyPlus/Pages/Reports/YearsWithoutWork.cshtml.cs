@@ -30,31 +30,19 @@ namespace MoneyPlus.Pages.Reports
 			_transactionRepository = transactionRepository;
 			_userRepository = userRepository;
 		}
-
-		//public IList<Transaction> Transaction { get;set; } = default!;
 		public List<TransactionRepository.ExpensesByYearModel> yearExpenses { get; set; }
-
 		public double Inflation { get; set; }
         public double ROI { get; set; }
-
 		public double TotalBalance { get; set; }
-
 		public double LastYearExpenses { get; set; }
-
 		public double CostOfLiving { get; set; }
-
 		public double YearsWithoutWorking { get; set; }
-
         public Dictionary<string, double>  total { get; set; }
-
 		public async Task OnGetAsync()
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
 			LastYearExpenses = _userRepository.GetLastYearExpensesByUser(userId);
-
 			TotalBalance = _userRepository.GetTotalBalanceByUser(userId);
-
 			var paramInflation = Request.Query["Inflation"];
 			var paramROI = Request.Query["ROI"];
 
@@ -78,11 +66,8 @@ namespace MoneyPlus.Pages.Reports
 			}
 
 			CostOfLiving = (LastYearExpenses * Inflation/100) + LastYearExpenses;
-
 			double AvailableBalance = 0;
-
 			YearsWithoutWorking = 0;
-
 			AvailableBalance = TotalBalance;
 
 			while (AvailableBalance > 0)
@@ -91,16 +76,8 @@ namespace MoneyPlus.Pages.Reports
 				AvailableBalance = (AvailableBalance * ROI/100) + AvailableBalance;
 
 				YearsWithoutWorking += 1;
-
 			}
-
-
 		}
-
 	}
-
-
-
-
 }
 

@@ -177,6 +177,7 @@ public class ImportCategoriesBackgroundService : BackgroundService
 		if (changes)
 		{
 			await context.SaveChangesAsync();
+			Logger.WriteLog("New categories imported from yaml.");
 		}
 	}
 }
