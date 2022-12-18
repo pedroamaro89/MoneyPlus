@@ -11,16 +11,17 @@
 
 <form method="get">
 	<div class="form-group">
-		<label class="control-label">Inflation Rate</label>
+		<b><label class="control-label">Inflation Rate</label></b>
 		<input asp-for="@Model.Inflation" class="form-control" />
 		<span asp-validation-for="@Model.Inflation" class="text-danger"></span>
 	</div>
+	<br>
 	<div class="form-group">
-		<label class="control-label">Return on Investment</label>
+		<b><label class="control-label">Return on Investment</label></b>
 		<input asp-for="@Model.ROI" class="form-control" />
 		<span asp-validation-for="@Model.ROI" class="text-danger"></span>
 	</div>
-	<input type="submit" value="Filter" asp-page-handler="Filter" />
+	<input type="submit" value="Filter" asp-page-handler="Estimate" />
 	<br>
 	<br>
 	</a>
@@ -79,7 +80,7 @@
 	<td>
 		<br>
 		<br>
-			You can stay without working for @Html.DisplayFor(modelItem => Model.YearsWithoutWorking) years.
+			You can stay without working or adding money for <b>@Html.DisplayFor(modelItem => Model.YearsWithoutWorking) years </b>.
 	</td>
 		}
 		else

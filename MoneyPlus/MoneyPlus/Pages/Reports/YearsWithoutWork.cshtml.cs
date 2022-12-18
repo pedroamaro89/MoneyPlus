@@ -60,7 +60,7 @@ namespace MoneyPlus.Pages.Reports
 
 			if (paramInflation.Count != 0 && double.Parse(paramInflation) != 0)
 			{
-				Inflation = double.Parse(paramInflation)/100;
+				Inflation = double.Parse(paramInflation);
 			} 
 			else
 			{
@@ -69,7 +69,7 @@ namespace MoneyPlus.Pages.Reports
 
 			if (paramROI.Count != 0 && double.Parse(paramROI) != 0)
 			{
-				ROI = double.Parse(paramROI)/100;
+				ROI = double.Parse(paramROI);
 			}
 			else
 			{
